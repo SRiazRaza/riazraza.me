@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "scripts": {
+    "format": "prettier --write '**/*.js' '**/*.scss' '**/*.html'",
+    "sass": "node script/sass.js",
+    "watch": "npm-run-all --parallel watch:sass watch:eleventy",
+    "watch:sass": "node script/watchsass.js",
+    "watch:eleventy": "eleventy --serve",
+    "build": "eleventy",
+    "lint": "eslint script/sync.ts",
+    "sync-data": "ts-node-esm script/sync.ts"
+  },
+  "dependencies": {
+    "@primer/css": "^21.0.0",
+    "@primer/octicons": "^19.0.0",
+    "domutils": "^3.0.0",
+    "html-minifier": "^4.0.0",
+    "liquidjs": "^10.9.4",
+    "markdown-it": "^13.0.0",
+    "sass": "^1.49.8",
+    "supports-color": "^9.2.1"
+  },
+  "repository": "github:sriazraza/riazraza.me",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@octokit/rest": "^20.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "npm-run-all2": "^6.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0-alpha.37",
+    "yaml": "2.4.5"
+  },
+  "packageManager": "yarn@4.5.0",
+  "type": "module"
+}
