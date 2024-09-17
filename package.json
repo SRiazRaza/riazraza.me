@@ -11,20 +11,20 @@
     "sync-data": "ts-node-esm script/sync.ts"
   },
   "dependencies": {
+    "@11ty/eleventy": "^3.0.0-alpha.14",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@primer/css": "^21.0.0",
     "@primer/octicons": "^19.0.0",
     "domutils": "^3.0.0",
     "html-minifier": "^4.0.0",
-    "liquidjs": "^10.9.4",
-    "markdown-it": "^13.0.0",
+    "liquidjs": "^10.0.0",
+    "markdown-it": "^14.0.0",
     "sass": "^1.49.8",
     "supports-color": "^9.2.1"
   },
   "repository": "github:sriazraza/riazraza.me",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "@octokit/rest": "^20.0.0",
+    "@octokit/rest": "^21.0.0",
     "@types/node": "^20.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
