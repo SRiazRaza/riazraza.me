@@ -1,21 +1,123 @@
 {% if page.url == '/' %}{% assign homepage = true %}{% endif %}
+<link href="https://fonts.cdnfonts.com/css/pacifico" rel="stylesheet">
+                
+<style>
+  .NavbarNav {
+    z-index: 30;
+    list-style: none;
+    position: absolute;
+    top: 0;
+    box-shadow: 0px 0px 0px 1px #f3f3f3;
+    width: 75%;
+    max-width: 420px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: white;
+    transition: all 0s !important;
+  }
+  .NavbarNav * {
+    transition: all 0s !important;
+  }
+  .NavbarNav a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12;
+    
+  }
+  .NavbarNav {
+    transition: right 0.4s !important;
+    right: -102%;
+  }
+  .NavbarNav.open {
+    transition: right 0.4s !important;
+    left: auto;
+    right: 0;
+  }
+  @media (min-width: 576px) {
+    .NavbarNav {
+      width: 60%;
+    }
+  }
+  @media (min-width: 768px) {
+    .NavbarNav {
+      right: auto;
+      width: 100%;
+      max-width: initial !important;
+      box-shadow: 0px 0px 0px 0px transparent;
+      opacity: 1;
+      visibility: visible;
+      background: transparent !important;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      height: auto;
+    }
+  }
+  .NavbarNav:hover {
+    background: #f4f4f4;
+  }
+
+  .title-head {
+    font-size: 20pt;
+    font-family: 'Pacifico';
+    margin: 1px 0;
+    width: fit-content;
+    white-space: nowrap;
+    transition-property: transform;
+    transition-duration: 0.8s;
+  }
+
+  .title-head:hover {
+    cursor: pointer;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-image: url(https://media.giphy.com/media/l41YcGT5ShJa0nCM0/giphy.gif);
+    background-size: 76px 76px;
+    text-decoration: none;
+    -webkit-transform: rotate(360deg);
+  }
+
+  .title-head.dark {
+    color: #444;
+  }
+
+  .title-head.block {
+    display: block;
+  }
+
+  .title-head.small {
+    font-size: 1em;
+  }
+
+  .title-head.big {
+    font-size: 2em;
+  }
+
+</style>
 
 <div class="{% unless homepage %}border-bottom{% endunless %}">
   <div class="container-lg px-3">
     <div class="py-4 d-flex flex-justify-between">
       <h1 class="h4 lh-default">
         {% unless homepage %}
-        <a href="/" class="no-underline text-uppercase text-brand-blue-dark d-flex flex-items-center">
+        <a href="/" class=" no-underline  text-brand-blue-dark d-flex flex-items-center">
           <img class="mr-2 mt-n2" src="/assets/img/probot-head.png" width="36" height="36" alt="">
-          <span class="hide-sm">Riaz Raza</span>
+          <span class="title-head">Riaz Raza</span>
         </a>
         {% endunless %}
       </h1>
-      <nav class="text-bold text-right">
+      <div>
+      <nav class="NavbarNav text-bold text-right">
         <a class="text-inherit px-2 d-inline-block" href="/apps/">Apps</a>
         <a class="text-inherit px-2 d-inline-block" href="/blog/">Blog</a>
         <a class="text-inherit px-2 d-inline-block" href="/community/">Community</a>
       </nav>
+      </div>
     </div>
   </div>
 </div>
