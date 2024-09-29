@@ -9,7 +9,7 @@ authors:
   - SRiazRaza
 repository: SRiazRaza/Vision-and-cognitive-systems/blob/main/VCS_Project.pdf
 stars: 0
-updated: 2023-11-01 08:05:07 UTC
+updated: 2023-02-01 08:05:07 UTC
 host: https://github.com/SRiazRaza/
 organizations:
   - NN Premium Water Pvt Limited

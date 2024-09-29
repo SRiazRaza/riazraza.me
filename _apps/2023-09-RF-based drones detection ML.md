@@ -10,7 +10,7 @@ authors:
   - SRiazRaza
 repository: SRiazRaza/WNMA/blob/main/WNMA_Project.pdf
 stars: 0
-updated: 2023-11-01 08:05:07 UTC
+updated: 2023-09-01 08:05:07 UTC
 host: https://github.com/SRiazRaza/
 organizations:
   - NN Premium Water Pvt Limited

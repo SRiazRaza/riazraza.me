@@ -12,7 +12,7 @@ authors:
   - SRiazRaza
 repository: SRiazRaza/autonomous-uav
 stars: 0
-updated: 2019-06-20 22:26:20 UTC
+updated: 2019-06-20
 host: https://github.com/SRiazRaza/
 organizations:
   - University FYP

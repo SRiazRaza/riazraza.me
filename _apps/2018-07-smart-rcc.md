@@ -9,7 +9,7 @@ authors:
   - SRiazRaza
 repository: SRiazRaza/Core-RCC
 stars: 0
-updated: 2018-07-20 22:26:20 UTC
+updated: 2018-07-20
 host: https://github.com/SRiazRaza/Core-RCC
 organizations:
   - Rahmat Casting Center
