@@ -15,7 +15,7 @@ layout: default
           Add to GitHub
         </a>
         <div class="color-text-tertiary">
-          <div class="d-inline tooltipped tooltipped-s" aria-label="{{ app.data.stars }} stars">{% octicon "star" height=16 class="v-align-middle" %} <span class="">{{ app.data.stars }}</span></div>
+        <a class="github-button" href="https://github.com/SRiazRaza/{{ app.data.slug }}" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star SRiazRaza/fgfgfg on GitHub">Star</a>
         </div>
       </div>
     </div>
@@ -50,9 +50,10 @@ layout: default
         </p>
         <h4 class="mb-1 h4 color-text-secondary">Authors</h4>
         {% for author in app.data.authors %}
-          <p>
-            <a class="text-inherit" href="https://github.com/{{ author }}">{{ author }}</a>
-          </p>
+        <a href="https://github.com/{{ author }}" aria-label="{{ author }}" class="tooltipped tooltipped-n avatar-group-item">
+              <img class="avatar color-bg-primary" src="https://github.com/{{ author }}.png" alt="{{ author }}" width="35" height="35">
+            </a>
+          
         {% endfor %}
         <h4 class="mb-1 h4 color-text-secondary">Updated</h4>
         <p><span class="text-white">{{ app.data.updated | date: "%B %e, %Y"}}</p>

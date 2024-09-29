@@ -1,7 +1,7 @@
 ---
 title: RF-based drones detection ML
 description: RF-based data acquisition and detection of drones using Machine Learning.
-slug: rf-based-data
+slug: WNMA
 screenshots:
   - /assets/img/projects/WNMA-3.PNG
   - /assets/img/projects/WNMA-1.PNG

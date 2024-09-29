@@ -1,7 +1,7 @@
 ---
 title: Detecting sea vessels using DL
 description: Detecting sea vessels in SAR imagery using Deep Learning
-slug: seal-vessel-detection
+slug: Vision-and-cognitive-systems
 screenshots:
   - /assets/img/projects/vcs-1.PNG
   - /assets/img/projects/vcs-2.PNG

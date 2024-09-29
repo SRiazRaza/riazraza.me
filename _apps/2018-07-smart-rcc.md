@@ -1,7 +1,7 @@
 ---
 title: Smart RCC
 description: This repository logs and calculates all possible computations for Smart RCC Application.
-slug: smart-rcc
+slug: Core-RCC
 screenshots:
   - /assets/img/projects/smart-rcc-home.PNG
   - /assets/img/projects/smart-rcc-bill.PNG
