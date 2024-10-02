@@ -1,7 +1,7 @@
 ---
 title: riazraza.me (Old Version)
 description: This is the old version of my personal portfolio website built using Gatsby and React. It showcases my projects, skills, and contact information with a fast and interactive user experience. The site was developed with modern web technologies such as GraphQL and React Slider.
-slug: riazraza-me
+slug: mywebsite
 screenshots:
   - /assets/img/projects/riazraza-home.png
   - /assets/img/projects/riazraza-about.png
