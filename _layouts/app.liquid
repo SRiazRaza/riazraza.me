@@ -6,8 +6,8 @@ layout: default
   <div class="container-lg px-3 py-4">
     <div class="d-md-flex d-md-flex-row gutter-md-spacious">
       <div class="col-md-9">
-        <h1 class="h1 lh-condensed-ultra">{{ app.data.title }}</h1>
-        <div class="color-text-tertiary">{{ app.data.description }}</div>
+        <h1 class="h1 lh-condensed-ultra ">{{ app.data.title }}</h1>
+        <div class="color-text-tertiary  mt-3" style="color: #6d6d6d;">{{ app.data.description }}</div>
       </div>
       <div class="col-md-3 text-center">
         <!-- Place this tag where you want the button to render. -->
@@ -23,24 +23,32 @@ layout: default
 <div class="color-bg-tertiary text-white">
   <div class="container-lg px-3 py-6">
     <div class="d-md-flex gutter-md-spacious">
+
       <div class="col-md-9">
-        <div class="sixteen-by-nine rounded-1 color-bg-primary overflow-hidden">
+        <div class="sixteen-by-nine rounded-1 color-bg-primary overflow-hidden"  style="border: 2px solid #ccc;">
+  
+
           {% for screenshot in app.data.screenshots %}
             <input class="switcher-input" id="screenshot-{{ forloop.index }}" type="radio" name="switcher"{% if forloop.index == 1 %} checked{% endif %}>
             <div class="switcher-item content d-flex flex-items-center flex-justify-center p-3">
               <img src="{{ screenshot }}" style="max-width:100%; max-height:100%;" alt="Screenshot of {{ app.data.title }} app">
             </div>
           {% endfor %}
+
+
+
         </div>
         {% if app.data.screenshots.size > 1 %}
-        <div class="d-flex flex-items-center flex-justify-center mt-3">
+        <div class="d-flex flex-items-center flex-justify-center mt-3" >
           {% for screenshot in app.data.screenshots %}
-            <label for="screenshot-{{ forloop.index }}" class="rounded-1 border border-gray-light mx-2" style="width:125px; height: 70px; background-image: url({{ screenshot }}); background-size: cover; background-position: center; cursor: pointer;">
+            <label for="screenshot-{{ forloop.index }}" class="rounded-1 border border-gray-light mx-2" style="width:125px; height: 70px; background-image: url({{ screenshot }}); background-size: cover; background-position: center; cursor: pointer; border: 2px solid #ccc;">
             </label>
           {% endfor %}
         </div>
         {% endif %}
       </div>
+
+
       <div class="col-md-3">
         <h4 class="mb-1 h4 color-text-secondary">Repository</h4>
         <p>
@@ -69,10 +77,10 @@ layout: default
   </div>
 </div>
 
-<div class="py-6">
-  <div class="container-lg px-3">
-    <div class="d-md-flex gutter-md-spacious">
-      <div class="col-md-9">
+<div class="py-6" >
+  <div class="container-lg px-3" >
+    <div class="d-md-flex gutter-md-spacious" >
+      <div class="col-md-9" >
         <div class="markdown-body">
           {{ app._templateContent }}
         </div>

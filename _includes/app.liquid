@@ -1,46 +1,47 @@
 <div class="col-lg-4 col-md-6 mb-3 mt-3 d-flex flex-column pt-4">
+  <!-- Card container with a border, taking you to the app page -->
   <a
     href="/apps/{{ app.slug }}/"
     class="d-flex flex-column color-bg-primary rounded-1 box-shadow border text-inherit no-underline flex-1"
-    style="height: 100%"
+    style="height: 100%; border: 1px solid #ddd; padding: 10px;"
   >
-    <h3 class="h4  ">
-            {{ app.title }}
-        </h3>
+    <!-- App image container -->
+    <div class="app-image-container relative" style="width: 100%; max-height: 200px; overflow: hidden;">
+      <img src="{{ app.screenshots[0] }}" alt="Screenshot of {{ app.title }} app" style="width: 1000px; height: 600px; object-fit: contain;">
+    </div>
+  </a>
 
-    <div   
- class="app-image-container relative">
-            <img src="{{ app.screenshots[0] }}" alt="Screenshot of {{ app.title }} app" class="absolute inset-0 w-full h-full object-cover">
-        </div>
-    <div
-      class="color-text-tertiary pl-3 pr-2 py-2 color-bg-tertiary-light border-top"
-      style="
-        margin-top: auto;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      "
-    >
-      <div class="d-flex flex-row">
-        <div
-          class="col-3 tooltipped tooltipped-s"
-          aria-label="{{ app.stars }} stars"
-        >
-          {% octicon "star" height=16 class="v-align-middle" %}
-          <span class="v-align-middle">{{ app.stars }}</span>
-        </div>
-        <div class="col-9 text-right">
-          {% for author in app.authors %}
+  <!-- App title with no margin and bottom border -->
+  <h3 class="h4" >
+    <a href="/apps/{{ app.slug }}/" class="text-inherit no-underline" style="color: black; font-family: 'Garamond', serif;">{{ app.title }}</a>
+  </h3>
+
+  <!-- Author and GitHub section without margin between the title and this div -->
+  <div class="color-text-tertiary pr-2 pl-1 color-bg-tertiary-light" >
+    <div class="d-flex flex-row align-items-center">
+      <!-- GitHub repository link -->
+      <div class="col-3">
+        <a href="https://github.com/{{ app.repository }}" target="_blank" aria-label="{{ app.repository }}" class="tooltipped tooltipped-s">
+          {% octicon "mark-github" height=24 class="v-align-middle" %}
+        </a>
+      </div>
+
+      <!-- Author section with avatar and link -->
+      <div class="col-9 text-right">
+        {% for author in app.authors %}
+        <a href="https://github.com/{{ author }}" target="_blank" aria-label="Made by {{ author }}" class="tooltipped tooltipped-s">
           <img
-            class="avatar tooltipped tooltipped-s"
+            class="avatar"
             alt="Made by {{ author }}"
             aria-label="Made by {{ author }}"
             height="24"
             src="https://github.com/{{ author }}.png"
+            style="border-radius: 50%;"
           />
-          {% endfor %}
-        </div>
+        </a>
+        {% endfor %}
       </div>
-    </div>
-  </a>
-</div>
 
+    </div>
+  </div>
+</div>
