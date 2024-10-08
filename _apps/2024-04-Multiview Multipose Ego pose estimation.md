@@ -3,8 +3,8 @@ title: Multiview Multipose Egopose estimation
 description: The work on this project was done at IRI-UPC, Spain, and it addresses the problem of multi-person multi-view 3D pose estimation of both second person and camera-wearer in videos captured by a wearable camera.
 slug: MVMP
 screenshots:
-  - /assets/img/projects/MVMP.gif
   - /assets/img/projects/MVMP1.png
+  - /assets/img/projects/MVMP.gif
   - /assets/img/projects/MVMP2.png
   - /assets/img/projects/MVMP3.png
 authors:
