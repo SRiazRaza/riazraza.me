@@ -13,7 +13,7 @@ title: Featured Projects
     <h1 class="h2"></h1>
 
     <div class="d-md-flex flex-wrap gutter flex-auto">
-      {% assign apps = collections.apps | sort: "name" | reverse%}
+      {% assign apps = collections.apps | sort: "updated" | reverse%}
       {% for app in apps %}
         {% include "app" app: app.data %}
       {% endfor %}
