@@ -6,14 +6,14 @@ layout: default
   <div class="container-lg px-3 py-4">
     <div class="d-md-flex d-md-flex-row gutter-md-spacious">
       <div class="col-md-9">
-        <h1 class="h1 lh-condensed-ultra " style="color: black; font-family: 'Garamond', serif; font-weight: bold;">{{ app.data.title }}</h1>
-        <div class="color-text-tertiary  mt-3" style="color: #6d6d6d;">{{ app.data.description }}</div>
+        <h1 class="h1 lh-condensed-ultra " style="color: black; font-family: 'Garamond', serif; font-weight: bold;">{{ project.data.title }}</h1>
+        <div class="color-text-tertiary  mt-3" style="color: #6d6d6d;">{{ project.data.description }}</div>
       </div>
       <div class="col-md-3 text-center">
         <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/SRiazRaza/{{ app.data.slug }}/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork SRiazRaza/fgfgfg on GitHub">Fork</a>
+        <a class="github-button" href="https://github.com/SRiazRaza/{{ project.data.slug }}/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork SRiazRaza/fgfgfg on GitHub">Fork</a>
         <div class="color-text-tertiary">
-        <a class="github-button" href="https://github.com/SRiazRaza/{{ app.data.slug }}" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star SRiazRaza/fgfgfg on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/SRiazRaza/{{ project.data.slug }}" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star SRiazRaza/fgfgfg on GitHub">Star</a>
         </div>
       </div>
     </div>
@@ -28,19 +28,19 @@ layout: default
         <div class="sixteen-by-nine rounded-1 color-bg-primary overflow-hidden"  style="border: 2px solid #ccc;">
   
 
-          {% for screenshot in app.data.screenshots %}
+          {% for screenshot in project.data.screenshots %}
             <input class="switcher-input" id="screenshot-{{ forloop.index }}" type="radio" name="switcher"{% if forloop.index == 1 %} checked{% endif %}>
             <div class="switcher-item content d-flex flex-items-center flex-justify-center p-3">
-              <img src="{{ screenshot }}" style="max-width:100%; max-height:100%;" alt="Screenshot of {{ app.data.title }} project">
+              <img src="{{ screenshot }}" style="max-width:100%; max-height:100%;" alt="Screenshot of {{ project.data.title }} project">
             </div>
           {% endfor %}
 
 
 
         </div>
-        {% if app.data.screenshots.size > 1 %}
+        {% if project.data.screenshots.size > 1 %}
         <div class="d-flex flex-items-center flex-justify-center mt-3" >
-          {% for screenshot in app.data.screenshots %}
+          {% for screenshot in project.data.screenshots %}
             <label for="screenshot-{{ forloop.index }}" class="rounded-1 border border-gray-light mx-2" style="width:125px; height: 70px; background-image: url({{ screenshot }}); background-size: cover; background-position: center; cursor: pointer; border: 2px solid #ccc;">
             </label>
           {% endfor %}
@@ -52,21 +52,21 @@ layout: default
       <div class="col-md-3">
         <h4 class="mb-1 h4 color-text-secondary">Repository</h4>
         <p>
-          <a class="text-inherit" href="https://github.com/{{ app.data.repository }}">{{ app.data.repository }}</a>
+          <a class="text-inherit" href="https://github.com/{{ project.data.repository }}">{{ project.data.repository }}</a>
         </p>
         <h4 class="mb-1 h4 color-text-secondary">Authors</h4>
-        {% for author in app.data.authors %}
+        {% for author in project.data.authors %}
         <a href="https://github.com/{{ author }}" aria-label="{{ author }}" class="tooltipped tooltipped-n avatar-group-item">
               <img class="avatar color-bg-primary" src="https://github.com/{{ author }}.png" alt="{{ author }}" width="35" height="35">
             </a>
           
         {% endfor %}
         <h4 class="mb-1 h4 color-text-secondary">Updated</h4>
-        <p><span class="text-white">{{ app.data.updated | date: "%B %e, %Y"}}</p>
+        <p><span class="text-white">{{ project.data.updated | date: "%B %e, %Y"}}</p>
 
-        {% if app.data.organizations %}
+        {% if project.data.organizations %}
           <h4 class="mb-1 h4 color-text-secondary">Used By</h4>
-          {% for org in app.data.organizations %}
+          {% for org in project.data.organizations %}
             <a href="https://github.com/{{ org }}" aria-label="{{ org }}" class="tooltipped tooltipped-n avatar-group-item">
               <img class="avatar color-bg-primary" src="https://github.com/{{ org }}.png" alt="{{ org }}" width="35" height="35">
             </a>
@@ -82,7 +82,7 @@ layout: default
     <div class="d-md-flex gutter-md-spacious" >
       <div class="col-md-9" >
         <div class="markdown-body">
-          {{ app._templateContent }}
+          {{ project._templateContent }}
         </div>
       </div>
     </div>

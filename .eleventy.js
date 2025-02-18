@@ -38,8 +38,8 @@ export default function (eleventyConfig) {
         return content;
     });
 
-    eleventyConfig.addCollection("apps", (collectionApi) => {
-        return collectionApi.getFilteredByGlob("_apps/*.md").sort((a, b) => b.data.stars - a.data.stars);
+    eleventyConfig.addCollection("projects", (collectionApi) => {
+        return collectionApi.getFilteredByGlob("_projects/*.md").sort((a, b) => b.data.stars - a.data.stars);
     });
 
     eleventyConfig.addCollection("docs", (collectionApi) => {

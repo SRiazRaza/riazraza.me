@@ -1,6 +1,6 @@
 ---
 title: Smart RCC
-description: This repository logs and calculates all possible computations for Smart RCC Application.
+description: This repository logs and calculates all possible computations for Smart RCC projectlication.
 slug: Core-RCC
 screenshots:
   - /assets/img/projects/smart-rcc-home.PNG
@@ -15,11 +15,11 @@ organizations:
   - Rahmat Casting Center
 ---
 
-✨ This repository logs and calculates all possible computations for Smart RCC Application, a Smart RCC & Double-Entry Bookkeeping Application.
+✨ This repository logs and calculates all possible computations for Smart RCC projectlication, a Smart RCC & Double-Entry Bookkeeping projectlication.
 #### Model: Project
 
 #### Tags:
-  - Desktop Application
+  - Desktop projectlication
   - Smart Casting
   - Double- Entry Bookkeeping. 
 #### Roles:

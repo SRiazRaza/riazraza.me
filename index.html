@@ -88,12 +88,12 @@ layout: default
     </p>
 
     <div class="d-md-flex flex-wrap gutter flex-auto">
-      {% assign apps = collections.apps  | sort: "name" | reverse%} {% for app
-      in apps limit:3 %} {% include "app" app: app.data %} {% endfor %}
+      {% assign projects = collections.projects  | sort: "name" | reverse%} {% for project
+      in projects limit:3 %} {% include "project" project: project.data %} {% endfor %}
     </div>
 
     <div class="text-center my-6">
-      <a class="btn  btn-outline-primary btn-large" href="/apps/">
+      <a class="btn  btn-outline-primary btn-large" href="/projects/">
         {% octicon "telescope" class="mr-2" %} Explore more Projects
       </a>
     </div>

@@ -55,7 +55,7 @@ function walk(directory: string, filepaths: string[] = []): string[] {
   return filepaths;
 }
 
-const files = walk(join(__dirname, "..", "_apps"));
+const files = walk(join(__dirname, "..", "_projects"));
 
 for (const path of files) {
   let data = "";

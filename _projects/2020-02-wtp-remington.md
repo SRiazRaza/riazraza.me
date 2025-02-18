@@ -14,12 +14,12 @@ organizations:
   - Remington Pharmaceutical Industries (Pvt) Ltd
 ---
 
-✨ The WTP Remington project is an industrial water treatment solution for Remington Pharmaceutical Industries. It utilizes Digi PEL technology to monitor and regulate energy functions and thermal cycles within the water treatment plant. The application ensures optimal machine performance and energy efficiency through real-time data collection and control. The system is designed with Industry 4.0 principles, enabling integration with other industrial systems and scalable infrastructure to support future enhancements.
+✨ The WTP Remington project is an industrial water treatment solution for Remington Pharmaceutical Industries. It utilizes Digi PEL technology to monitor and regulate energy functions and thermal cycles within the water treatment plant. The projectlication ensures optimal machine performance and energy efficiency through real-time data collection and control. The system is designed with Industry 4.0 principles, enabling integration with other industrial systems and scalable infrastructure to support future enhancements.
 
 #### Model: Project
 
 #### Tags:
-  - Desktop Application
+  - Desktop projectlication
   - Industry Software
   - Industry 4.0
 

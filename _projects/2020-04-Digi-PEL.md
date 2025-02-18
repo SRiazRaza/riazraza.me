@@ -19,7 +19,7 @@ organizations:
 #### Model: Project
 
 #### Tags:
-  - Desktop Application
+  - Desktop projectlication
   - Industry Software
   - Industry 4.0
 

@@ -14,12 +14,12 @@ organizations:
   - NN Premium Water Pvt Limited
 ---
 
-✨ NN Premium Water is an industrial software solution designed to automate and manage water supply deliveries for **NN Premium Water Pvt Limited**. The system enhances the efficiency of supply chain operations by providing tools to manage inventory, track deliveries, and oversee logistical processes. Built with **C#**, **MySQL**, and **DotNETReactor**, the application ensures secure and reliable performance for water supply management.
+✨ NN Premium Water is an industrial software solution designed to automate and manage water supply deliveries for **NN Premium Water Pvt Limited**. The system enhances the efficiency of supply chain operations by providing tools to manage inventory, track deliveries, and oversee logistical processes. Built with **C#**, **MySQL**, and **DotNETReactor**, the projectlication ensures secure and reliable performance for water supply management.
 
 #### Model: Project
 
 #### Tags:
-  - Desktop Application
+  - Desktop projectlication
   - Industrial Software
   - Supply Chain
   - Payroll

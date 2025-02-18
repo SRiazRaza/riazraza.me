@@ -1,7 +1,7 @@
-{% assign apps = collections.apps | sample:4 %}
+{% assign projects = collections.projects | sample:4 %}
 
 <ul>
-{% for app in apps limit:6 %}
-  <li><a href="/apps/{{ app.data.slug }}">{{ app.data.title }}</a> - {{ app.data.description }}</li>
+{% for project in projects limit:6 %}
+  <li><a href="/projects/{{ project.data.slug }}">{{ project.data.title }}</a> - {{ project.data.description }}</li>
 {% endfor %}
 </ul>

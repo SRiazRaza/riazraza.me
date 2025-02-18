@@ -1,0 +1,12 @@
+---
+pagination:
+  data: collections.projects
+  size: 1
+  alias: project
+permalink: "/projects/{{ project.data.slug | slug }}/index.html"
+layout: project
+---
+
+{%- for item in pagination.items %}
+  {{ item.data }}
+{% endfor -%}
