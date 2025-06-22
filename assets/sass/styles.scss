@@ -28,7 +28,7 @@ code {
 
 /*
  * Extend the footer to the bottom of the page,
- * even if there’s not enough content to make the page scroll.
+ * even if there's not enough content to make the page scroll.
  */
 body {
   min-height: 100vh;
@@ -52,4 +52,118 @@ body {
 // Display newlines in Markdown
 .markdown-body code br, .markdown-body tt br {
   display: unset !important;
+}
+
+.NavbarNav {
+  z-index: 30;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  box-shadow: 0px 0px 0px 1px #f3f3f3;
+  width: 75%;
+  max-width: 420px;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: white;
+  transition: all 0s !important;
+}
+.NavbarNav * {
+  transition: all 0s !important;
+}
+.NavbarNav a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16;
+}
+.NavbarNav {
+  transition: right 0.4s !important;
+  right: -102%;
+}
+.NavbarNav.open {
+  transition: right 0.4s !important;
+  left: auto;
+  right: 0;
+}
+@media (min-width: 576px) {
+  .NavbarNav {
+    width: 60%;
+  }
+}
+@media (min-width: 768px) {
+  .NavbarNav {
+    right: auto;
+    width: 100%;
+    max-width: initial !important;
+    box-shadow: 0px 0px 0px 0px transparent;
+    opacity: 1;
+    visibility: visible;
+    background: transparent !important;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: auto;
+  }
+}
+.NavbarNav:hover {
+  background: #f4f4f4;
+}
+
+.title-head {
+  font-size: 20pt;
+  font-family: 'Pacifico';
+  margin: 1px 0;
+  width: fit-content;
+  white-space: nowrap;
+  transition-property: transform;
+  transition-duration: 0.8s;
+}
+
+.title-head:hover {
+  cursor: pointer;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: url(https://media.giphy.com/media/l41YcGT5ShJa0nCM0/giphy.gif);
+  background-size: 76px 76px;
+  text-decoration: none;
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.title-head.dark {
+  color: #444;
+}
+
+.title-head.block {
+  display: block;
+}
+
+.title-head.small {
+  font-size: 1em;
+}
+
+.title-head.big {
+  font-size: 2em;
+}
+
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.burger-bar {
+  height: 2px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.88);
+  transition: all 0.25s;
 }

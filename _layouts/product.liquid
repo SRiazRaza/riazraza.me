@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+<div class="page-section">
+  <div class="container-lg px-3 py-4">
+    <div class="d-md-flex d-md-flex-row gutter-md-spacious">
+      <div class="col-md-9">
+        <h1 class="h1 lh-condensed-ultra " style="color: black; font-family: 'Garamond', serif; font-weight: bold;">{{ title }}</h1>
+        <div class="color-text-tertiary  mt-3" style="color: #6d6d6d;">{{ description }}</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="color-bg-tertiary text-white">
+  <div class="container-lg px-3">
+    <div class="d-md-flex gutter-md-spacious">
+
+      <div class="col-md-9">
+        <div class="sixteen-by-nine rounded-1 color-bg-primary overflow-hidden"  style="border: 2px solid #ccc;">
+  
+
+          {% for screenshot in image %}
+            <input class="switcher-input" id="screenshot-{{ forloop.index }}" type="radio" name="switcher"{% if forloop.index == 1 %} checked{% endif %}>
+            <div class="switcher-item content d-flex flex-items-center flex-justify-center p-3">
+              <img src="{{ screenshot }}" style="max-width:100%; max-height:100%;" alt="Screenshot of {{ title }} product">
+            </div>
+          {% endfor %}
+
+
+
+        </div>
+        {% if image.size > 1 %}
+        <div class="d-flex flex-items-center flex-justify-center mt-3" >
+          {% for screenshot in image %}
+            <label for="screenshot-{{ forloop.index }}" class="rounded-1 border border-gray-light mx-2" style="width:125px; height: 70px; background-image: url({{ screenshot }}); background-size: cover; background-position: center; cursor: pointer; border: 2px solid #ccc;">
+            </label>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+
+      <div class="col-md-3">
+        <h4 class="mb-1 h4 color-text-secondary">Website Link:</h4>
+        <p>
+          <a class="text-inherit" href="{{link}}">{{ link }}</a>
+        </p>
+        <h4 class="mb-1 h4 color-text-secondary">Authors</h4>
+        {% for author in authors %}
+        <a href="https://github.com/{{ author }}" aria-label="{{ author }}" class="tooltipped tooltipped-n avatar-group-item">
+              <img class="avatar color-bg-primary" src="https://github.com/{{ author }}.png" alt="{{ author }}" width="35" height="35">
+            </a>
+          
+        {% endfor %}
+        <h4 class="mb-1 h4 color-text-secondary">Updated</h4>
+        <p><span class="text-white">{{ updated | date: "%B %e, %Y"}}</p>
+
+        {% if organizations %}
+          <h4 class="mb-1 h4 color-text-secondary">Used By</h4>
+          {% for org in organizations %}
+            <a href="https://github.com/{{ org }}" aria-label="{{ org }}" class="tooltipped tooltipped-n avatar-group-item">
+              <img class="avatar color-bg-primary" src="https://github.com/{{ org }}.png" alt="{{ org }}" width="35" height="35">
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="py-6" >
+  <div class="container-lg px-3" >
+    <div class="d-md-flex gutter-md-spacious" >
+      <div class="col-md-9" >
+        <div class="markdown-body">
+          {{ product._templateContent }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

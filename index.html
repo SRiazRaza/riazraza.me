@@ -80,6 +80,30 @@ layout: default
   </header>
 </div>
 
+
+<!-- Products Section -->
+<div id="products" class="color-bg-tertiary-light border-top border-gray-light">
+  <div class="container-lg px-3 pt-4 page-section">
+    <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Products</h2>
+    
+    <div class="d-md-flex flex-wrap gutter flex-auto">
+      {% assign products = collections.products | sort: "updated" | reverse %}
+      {% for product in products limit:3 %}
+        <a href="{{ product.url }}" style="text-decoration:none;">
+          {% include "product" product: product.data %}
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="text-center my-6">
+      <a class="btn btn-outline-primary btn-large" href="/products/">
+        Explore more Products
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Projects Section -->
 <div id="explore" class="color-bg-tertiary-light border-top border-gray-light">
   <div class="container-lg px-3 pt-4 page-section">
     <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Projects</h2>
@@ -99,6 +123,8 @@ layout: default
     </div>
   </div>
 </div>
+
+
 
 <div id="build" class="border-top page-section f4 pt-4" >
   <div class="container-lg px-3">
@@ -168,7 +194,7 @@ layout: default
           <h3 class="h3 mb-2" style="font-family: 'Garamond', serif;">Universit`a Degli Studi di Padova, Italy </h3>
 
           <p class="">
-            I proudly graduated on April 19, 2024, with a major in Artificial Intelligence. My thesis, titled <a href="https://github.com/SRiazRaza/MscThesis/blob/main/MSc_Syed_Riaz_Raza_Thesis____UniPD.pdf" >“3D Human Pose Estimation from Egocentric Videos of Social Interactions”</a> was conducted at IRI-UPC in Spain. This research addresses the challenges of multi-person, multi-view 3D pose estimation for both the second person and the camera-wearer, utilizing videos captured by a wearable camera (HoloLens).
+            I proudly graduated on April 19, 2024, with a major in Artificial Intelligence. My thesis, titled <a href="https://github.com/SRiazRaza/MscThesis/blob/main/MSc_Syed_Riaz_Raza_Thesis____UniPD.pdf" >"3D Human Pose Estimation from Egocentric Videos of Social Interactions"</a> was conducted at IRI-UPC in Spain. This research addresses the challenges of multi-person, multi-view 3D pose estimation for both the second person and the camera-wearer, utilizing videos captured by a wearable camera (HoloLens).
             
           </p>
         </div>

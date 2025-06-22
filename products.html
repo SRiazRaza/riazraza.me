@@ -5,44 +5,22 @@ redirect_from:
   - /contribute/
 ---
 
-<div class="container-lg px-3 featurette">
-  <h1 class="h2 text-center">Join my Community of Products</h1>
-  <p class="alt-lead col-md-8 text-center color-text-secondary mx-auto">
-    We're thrilled that you'd like to contribute to our community products. Your help is
-    essential for keeping it great. We are offering commisions for sale of our products.
-  </p>
 
-  <div class="d-flex flex-wrap flex-lg-justify-center flex-justify-around flex-self-center flex-sm-fill  my-6" style="gap:10px">
-    <a
-      class="btn btn-outline d-inline-block mb-1 mb-md-0 mr-0 mr-md-3"
-      href="https://github.com/SRiazRaza/SRiazRaza/"
-    >
-      AiUAV Discussions
-    </a>
 
-    <a
-      class="btn btn-outline d-inline-block mb-1 mb-md-0 mr-0 mr-md-3"
-      href="https://github.com/SRiazRaza/SRiazRaza/"
-    >
-      Contribute on GitHub
-    </a>
-
-    <a
-      class="btn btn-outline d-inline-block mb-1 mb-md-0 mr-0 mr-md-3"
-      href="https://twitter.com/"
-    >
-      Follow on Twitter
-    </a>
-
-    <a
-      class="btn btn-outline d-inline-block mb-1"
-      href="https://stackoverflow.com/questions/tagged/inspection"
-    >
-      Ask on Stack Overflow
-    </a>
+<!-- Products Section -->
+<div id="products" class="color-bg-tertiary-light border-top border-gray-light">
+  <div class="container-lg px-3 pt-4 page-section">
+    <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Products</h2> 
+    <div class="d-md-flex flex-wrap gutter flex-auto">
+      {% assign products = collections.products | sort: "updated" | reverse %}
+      {% for product in products limit:3 %}
+        <a href="{{ product.url }}" style="text-decoration:none;">
+          {% include "product" product: product.data %}
+        </a>
+      {% endfor %}
+    </div>
   </div>
-
-
 </div>
+
 
 <script src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async></script>
