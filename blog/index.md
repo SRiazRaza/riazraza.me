@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Blog — Riaz Raza
+templateEngineOverride: liquid
 ---
 <style>
   .blog-hero { text-align: center; padding: 2.5rem 0 1.5rem; }
@@ -41,27 +42,7 @@ title: Blog — Riaz Raza
   <div class="blog-grid">
     {% assign posts = collections.posts | reverse %}
     {% for post in posts %}
-    <a href="{{ post.url }}" class="blog-card rr-reveal">
-      {% if post.data.cover %}
-        <img src="{{ post.data.cover }}" alt="{{ post.data.title }}" class="blog-card__cover" loading="lazy">
-      {% else %}
-        <div class="blog-card__cover-placeholder">✍</div>
-      {% endif %}
-      <div class="blog-card__body">
-        {% if post.data.tags %}
-        <div class="blog-card__tags">
-          {% for tag in post.data.tags %}
-          <span class="blog-card__tag">#{{ tag }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-        <h2 class="blog-card__title">{{ post.data.title }}</h2>
-        {% if post.data.excerpt %}
-        <p class="blog-card__excerpt">{{ post.data.excerpt }}</p>
-        {% endif %}
-        <span class="blog-card__meta">{{ post.data.date | date: "%B %d, %Y" }}{% if post.data.author %} · {{ post.data.author }}{% endif %}</span>
-      </div>
-    </a>
+      {% include "blog-card" post: post %}
     {% endfor %}
   </div>
 </div>

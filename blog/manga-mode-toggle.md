@@ -5,7 +5,7 @@ date: 2026-05-14
 author: Riaz Raza
 tags: [design, portfolio, eleventy, webdev, fun]
 excerpt: "I rebuilt riazraza.me to be clean and professional by default — but now, if you're feeling playful, you can unlock a hidden Manga Mode with subtle anime-inspired accents, animated tech badges, and even a Konami code easter egg. Here's how and why."
-cover: /assets/img/blog/manga-mode-hero.jpg
+mangaArt: true
 ---
 
 ## Professional by Default. Playful by Choice.
@@ -24,13 +24,17 @@ Nothing breaks. Nothing gets loud. But if you look closely:
 
 | Feature | Default | Manga Mode |
 |---------|---------|------------|
-| **Project Cards** | Clean hover lift | Tech badges "unlock" with a soft pop + glow |
-| **Quotes/Testimonials** | Standard blockquote | Manga-style speech bubble with panel border |
-| **Background** | Solid/gradient | Subtle 5% screentone pattern (like manga paper) |
-| **Typography** | System sans-serif | Headings swap to a playful accent font |
-| **Easter Egg** | None | Konami code ↑↑↓↓←→←→BA triggers a hidden animation |
+| **Page background** | Clean white | Subtle two-layer screentone dot pattern (like manga paper) |
+| **Card corners** | Rounded border | Pink L-bracket accent appears top-left of every card |
+| **Skill / tech badges** | Slight lift on hover | Bounces up with `unlockPop` + ✨ sparkle floats away |
+| **Quotes / blockquotes** | Standard border-left | Manga speech bubble with ink tail pointing down |
+| **Typography** | System sans-serif | Headings swap to Bangers, a bold display font |
+| **Toggle button** | Grey pill | Red glow + icon spins on activate |
+| **Easter Egg** | None | Konami code ↑↑↓↓←→←→BA — emojis burst up, then a secret panel appears |
 
 > **Important**: Manga Mode is *opt-in only*. It never auto-activates. Your experience — and your client's — stays professional unless you choose otherwise.
+
+The interactive canvas animation at the top of this post is also synced — click it or use the nav toggle and watch them mirror each other in real time.
 
 ## Why Build This?
 

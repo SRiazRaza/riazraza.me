@@ -170,20 +170,22 @@ layout: default
     <!-- Main content -->
     <div class="col-md-9">
       <div class="post-header">
-        <h1 class="post-title">{{ page.title }}</h1>
+        <h1 class="post-title">{{ title }}</h1>
         <div class="post-meta">
-          {% if page.date %}<span>📅 {{ page.date | date: "%B %d, %Y" }}</span>{% endif %}
-          {% if page.author %}<span>✍ {{ page.author }}</span>{% endif %}
-          {% if page.tags %}
-            {% for tag in page.tags %}
+          {% if date %}<span>📅 {{ date | date: "%B %d, %Y" }}</span>{% endif %}
+          {% if author %}<span>✍ {{ author }}</span>{% endif %}
+          {% if tags %}
+            {% for tag in tags %}
             <span class="post-tag">#{{ tag }}</span>
             {% endfor %}
           {% endif %}
         </div>
       </div>
 
-      {% if page.cover %}
-      <img src="{{ page.cover }}" alt="{{ page.title }}" class="post-cover" loading="lazy">
+      {% if mangaArt %}
+      {% include "manga-art-animation" %}
+      {% elsif cover %}
+      <img src="{{ cover }}" alt="{{ title }}" class="post-cover" loading="lazy">
       {% endif %}
 
       <div class="markdown-body post-body" id="postBody">

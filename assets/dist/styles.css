@@ -28754,6 +28754,118 @@ body.manga-mode .manga-toggle-btn {
   color: var(--rr-accent-manga);
 }
 
+body.manga-mode {
+  background-image: radial-gradient(circle at 25% 15%, rgba(0, 0, 0, 0.04) 1px, transparent 1px), radial-gradient(circle at 75% 85%, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+body.manga-mode .card,
+body.manga-mode .project-card,
+body.manga-mode .product-card,
+body.manga-mode .blog-card {
+  position: relative;
+}
+
+body.manga-mode .card::before,
+body.manga-mode .project-card::before,
+body.manga-mode .product-card::before,
+body.manga-mode .blog-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #ff6b9d;
+  border-left: 3px solid #ff6b9d;
+  border-radius: 2px 0 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.manga-mode .tech-badge,
+body.manga-mode .skill-badge {
+  cursor: pointer;
+  position: relative;
+}
+
+body.manga-mode .tech-badge:hover::before,
+body.manga-mode .skill-badge:hover::before {
+  content: "✨";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  animation: floatSparkle 0.7s ease-out forwards;
+  opacity: 0;
+  pointer-events: none;
+  font-style: normal;
+  z-index: 10;
+}
+
+@keyframes floatSparkle {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-22px);
+  }
+}
+body.manga-mode blockquote,
+body.manga-mode .testimonial {
+  position: relative;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin: 1.5rem 0;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+body.manga-mode blockquote::before,
+body.manga-mode .testimonial::before {
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  left: 24px;
+  border-width: 13px 13px 0;
+  border-style: solid;
+  border-color: #333 transparent transparent;
+}
+
+body.manga-mode blockquote::after,
+body.manga-mode .testimonial::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 26px;
+  border-width: 10px 11px 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+}
+
+@keyframes spinSoft {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(20deg);
+  }
+  70% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(25deg);
+    opacity: 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   body.manga-mode *,
   body.manga-mode *::before,

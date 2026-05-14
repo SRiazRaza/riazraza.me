@@ -1,0 +1,308 @@
+<canvas id="mangaHeroCanvas" aria-label="Interactive algorithmic art: click to toggle between Professional and Manga Mode" role="img" style="display:block;width:100%;height:460px;border-radius:8px;cursor:pointer;"></canvas>
+
+<script>
+(function () {
+  const canvas = document.getElementById('mangaHeroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let t = 0;
+  let mangaRatio = document.body.classList.contains('manga-mode') ? 1 : 0;
+  let target = mangaRatio;
+  let glitch = 0;
+  let glitchTimer = 0;
+
+  /* ── Resize ── */
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width  = rect.width  * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Sync with site manga toggle ── */
+  window.addEventListener('mangaModeChange', e => { target = e.detail.active ? 1 : 0; });
+  canvas.addEventListener('click', () => { target = target > 0.5 ? 0 : 1; });
+
+  /* ── Halftone dot grid ── */
+  function drawScreentone(W, H, alpha, color) {
+    const sp = 13;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    for (let x = 0; x <= W + sp; x += sp) {
+      for (let y = 0; y <= H + sp; y += sp) {
+        const dist  = Math.hypot(x - W / 2, y - H / 2);
+        const wave  = Math.sin(dist * 0.035 - t * 2.2) * 0.5 + 0.5;
+        const pulse = Math.sin(t * 1.5 + x * 0.03) * 0.5 + 0.5;
+        const r = wave * 4.5 * pulse + 0.6;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+  }
+
+  /* ── Professional grid lines ── */
+  function drawGrid(W, H, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const sp = 32;
+    ctx.lineWidth = 0.8;
+    for (let x = 0; x <= W; x += sp) {
+      ctx.strokeStyle = x % (sp * 4) === 0
+        ? 'rgba(25,118,210,0.25)'
+        : 'rgba(25,118,210,0.08)';
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y <= H; y += sp) {
+      ctx.strokeStyle = y % (sp * 4) === 0
+        ? 'rgba(25,118,210,0.25)'
+        : 'rgba(25,118,210,0.08)';
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  /* ── Speed lines ── */
+  function drawSpeedLines(W, H, alpha) {
+    ctx.save();
+    const cx = W / 2, cy = H / 2;
+    const count = 72;
+    for (let i = 0; i < count; i++) {
+      const angle   = (i / count) * Math.PI * 2 + t * 0.08;
+      const jitter  = Math.sin(i * 5.7 + t * 3) * 0.018;
+      const inner   = 90 + Math.sin(t * 2 + i) * 12;
+      const outer   = Math.max(W, H) * 1.1;
+      const lw      = (Math.sin(i * 2.3) * 0.6 + 0.9) * (1 + alpha * 0.5);
+
+      const grad = ctx.createLinearGradient(
+        cx + Math.cos(angle) * inner, cy + Math.sin(angle) * inner,
+        cx + Math.cos(angle) * (inner + 120), cy + Math.sin(angle) * (inner + 120)
+      );
+      grad.addColorStop(0, `rgba(0,0,0,${0.18 * alpha})`);
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(angle + jitter) * inner, cy + Math.sin(angle + jitter) * inner);
+      ctx.lineTo(cx + Math.cos(angle) * outer, cy + Math.sin(angle) * outer);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = lw;
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  /* ── Red accent ×-marks ── */
+  function drawAccents(W, H, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const cx = W / 2, cy = H / 2;
+    const marks = [
+      [cx - W * 0.3, cy - H * 0.25],
+      [cx + W * 0.3, cy - H * 0.25],
+      [cx - W * 0.3, cy + H * 0.25],
+      [cx + W * 0.3, cy + H * 0.25],
+      [cx - W * 0.15, cy - H * 0.1],
+      [cx + W * 0.15, cy + H * 0.1],
+    ];
+    marks.forEach(([x, y], i) => {
+      const pulse = 0.5 + Math.sin(t * 3 + i * 1.1) * 0.4;
+      ctx.font = `bold ${14 + pulse * 4}px serif`;
+      ctx.fillStyle = `rgba(230,0,38,${0.5 + pulse * 0.4})`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('×', x, y);
+    });
+    ctx.restore();
+  }
+
+  /* ── Toggle switch ── */
+  function drawToggle(W, H) {
+    const cx = W / 2, cy = H / 2;
+    const pw = Math.min(130, W * 0.3), ph = 50, pr = ph / 2;
+    const px = cx - pw / 2, py = cy - ph / 2;
+
+    ctx.save();
+
+    /* glow ring */
+    const glowColor = mangaRatio > 0.5 ? '#e60026' : '#1976d2';
+    ctx.shadowColor  = glowColor;
+    ctx.shadowBlur   = 24 + Math.sin(t * 2) * 8;
+    ctx.beginPath();
+    ctx.roundRect(px, py, pw, ph, pr);
+    ctx.strokeStyle = glowColor;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    /* pill body */
+    const grad = ctx.createLinearGradient(px, py, px + pw, py + ph);
+    if (mangaRatio > 0.5) {
+      grad.addColorStop(0, '#ff3a5c');
+      grad.addColorStop(1, '#c40020');
+    } else {
+      grad.addColorStop(0, '#64b5f6');
+      grad.addColorStop(1, '#1565c0');
+    }
+    ctx.beginPath();
+    ctx.roundRect(px, py, pw, ph, pr);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    /* knob */
+    const knobX = px + pr + (pw - pr * 2) * mangaRatio;
+    ctx.shadowColor = 'rgba(0,0,0,0.35)';
+    ctx.shadowBlur  = 10;
+    ctx.beginPath();
+    ctx.arc(knobX, cy, pr - 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.font = `${pr - 7}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(mangaRatio > 0.5 ? '🎌' : '💼', knobX, cy);
+
+    /* inline labels */
+    ctx.font = `bold 9px "Courier New", monospace`;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('PRO',   px + pr,        cy);
+    ctx.fillText('MANGA', px + pw - pr,   cy);
+
+    ctx.restore();
+  }
+
+  /* ── Glitch strips ── */
+  function drawGlitch(W, H) {
+    if (glitch <= 0) return;
+    ctx.save();
+    for (let i = 0; i < 6; i++) {
+      const y = Math.random() * H;
+      const h = Math.random() * 6 + 2;
+      const shift = (Math.random() - 0.5) * 20 * glitch;
+      ctx.globalAlpha = glitch * 0.5;
+      const imgData = ctx.getImageData(0, y, W, h);
+      ctx.putImageData(imgData, shift, y);
+      ctx.fillStyle = `rgba(230,0,38,${glitch * 0.15})`;
+      ctx.fillRect(0, y, W, h);
+    }
+    ctx.restore();
+  }
+
+  /* ── Corner labels ── */
+  function drawLabels(W, H) {
+    const isSmall = W < 480;
+    ctx.save();
+
+    /* Professional (top-left) */
+    ctx.globalAlpha = 0.25 + (1 - mangaRatio) * 0.75;
+    ctx.font = `900 ${isSmall ? 26 : 38}px "Gentium Book Basic", Georgia, serif`;
+    ctx.fillStyle = '#1976d2';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('Professional', 22, 22);
+
+    ctx.font = `${isSmall ? 10 : 12}px "Courier New", monospace`;
+    ctx.fillStyle = 'rgba(25,118,210,0.65)';
+    ctx.fillText('clean · focused · polished', 22, isSmall ? 52 : 66);
+
+    /* Manga (bottom-right) */
+    ctx.globalAlpha = 0.25 + mangaRatio * 0.75;
+    ctx.font = `900 ${isSmall ? 26 : 38}px "Gentium Book Basic", Georgia, serif`;
+    ctx.fillStyle = '#e60026';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('漫画モード', W - 22, H - 22);
+
+    ctx.font = `${isSmall ? 10 : 12}px "Courier New", monospace`;
+    ctx.fillStyle = 'rgba(230,0,38,0.65)';
+    ctx.fillText('bold · expressive · alive', W - 22, H - (isSmall ? 52 : 62));
+
+    ctx.restore();
+  }
+
+  /* ── Panel border ── */
+  function drawBorder(W, H) {
+    ctx.save();
+
+    /* outer */
+    ctx.strokeStyle = '#111';
+    ctx.lineWidth   = mangaRatio > 0.5 ? 5 : 2;
+    ctx.strokeRect(5, 5, W - 10, H - 10);
+
+    /* inner accent */
+    if (mangaRatio > 0.3) {
+      ctx.strokeStyle = `rgba(230,0,38,${((mangaRatio - 0.3) / 0.7) * 0.75})`;
+      ctx.lineWidth   = 2;
+      ctx.strokeRect(13, 13, W - 26, H - 26);
+    }
+
+    /* corner circles */
+    if (mangaRatio > 0.5) {
+      const c = [[20, 20], [W - 20, 20], [20, H - 20], [W - 20, H - 20]];
+      c.forEach(([x, y]) => {
+        const pulse = 3.5 + Math.sin(t * 4) * 1.5;
+        ctx.beginPath(); ctx.arc(x, y, pulse, 0, Math.PI * 2);
+        ctx.fillStyle = '#e60026'; ctx.fill();
+      });
+    }
+
+    ctx.restore();
+  }
+
+  /* ── Hint ── */
+  function drawHint(W, H) {
+    ctx.save();
+    ctx.globalAlpha = 0.35 + Math.sin(t * 1.8) * 0.15;
+    ctx.font = '11px "Courier New", monospace';
+    ctx.fillStyle = '#555';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('↑ click to toggle · synced with nav manga mode', W / 2, H - 9);
+    ctx.restore();
+  }
+
+  /* ── Main loop ── */
+  function frame() {
+    t += 0.017;
+    mangaRatio += (target - mangaRatio) * 0.055;
+
+    /* trigger glitch on mode switch */
+    const diff = Math.abs(target - mangaRatio);
+    if (diff > 0.02 && diff < 0.08) glitch = 0.7;
+    glitch *= 0.88;
+
+    const rect = canvas.getBoundingClientRect();
+    const W = rect.width, H = rect.height;
+
+    /* background */
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, mangaRatio > 0.5 ? '#fdf7f7' : '#f5f8ff');
+    bg.addColorStop(1, mangaRatio > 0.5 ? '#fff8f4' : '#eef3ff');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    drawGrid(W, H, (1 - mangaRatio) * 0.9 + 0.05);
+    drawScreentone(W, H, mangaRatio * 0.8 + 0.06, 'rgba(0,0,0,0.85)');
+    drawSpeedLines(W, H, mangaRatio);
+    drawAccents(W, H, mangaRatio);
+    drawLabels(W, H);
+    drawToggle(W, H);
+    drawBorder(W, H);
+    drawGlitch(W, H);
+    drawHint(W, H);
+
+    requestAnimationFrame(frame);
+  }
+
+  frame();
+})();
+</script>

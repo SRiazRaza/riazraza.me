@@ -69,13 +69,13 @@
       btn.addEventListener('click', function () {
         var nowActive = !document.body.classList.contains('manga-mode');
         setMangaMode(nowActive);
-        // Controller pulse animation
+        // spinSoft on activate, controllerPulse on deactivate
         var icon = btn.querySelector('.btn-icon');
         if (icon) {
           icon.style.animation = 'none';
-          // force reflow
           void icon.offsetWidth;
-          icon.style.animation = '';
+          icon.style.animation = nowActive ? 'spinSoft 0.6s ease' : 'controllerPulse 0.5s ease';
+          setTimeout(function () { icon.style.animation = ''; }, 700);
         }
       });
     }
@@ -108,6 +108,30 @@
   function triggerEasterEgg() {
     if (document.getElementById('manga-easter-egg')) return;
 
+    // Emoji burst — relaxed stagger, panel waits for burst to settle
+    var emojis = ['🎌', '🎮', '📚', '✨', '🎨', '⚔️', '🌸', '🎴', '🀄', '🕹️'];
+    for (var i = 0; i < 14; i++) {
+      (function (idx) {
+        setTimeout(function () {
+          var el = document.createElement('div');
+          el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.cssText = [
+            'position:fixed',
+            'left:' + (5 + Math.random() * 90) + 'vw',
+            'top:88vh',
+            'font-size:' + (1.3 + Math.random() * 1.2) + 'rem',
+            'pointer-events:none',
+            'animation:floatUp 1.8s ease-out forwards',
+            'z-index:9998'
+          ].join(';');
+          document.body.appendChild(el);
+          setTimeout(function () { if (el.parentNode) el.remove(); }, 2000);
+        }, idx * 120);
+      })(i);
+    }
+
+    // Panel appears after emojis have had time to burst (900ms delay)
+    setTimeout(function() {
     var overlay = document.createElement('div');
     overlay.id = 'manga-easter-egg';
     overlay.innerHTML = [
@@ -133,5 +157,6 @@
     document.addEventListener('keydown', function onEsc(e) {
       if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', onEsc); }
     });
+    }, 900); // end panel setTimeout — waits for emoji burst to settle
   }
 })();
