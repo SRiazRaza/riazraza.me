@@ -1,30 +1,32 @@
 {% if page.url == '/' %}{% assign homepage = true %}{% endif %}
 <link href="https://fonts.cdnfonts.com/css/pacifico" rel="stylesheet">
 
-<div class="{% unless homepage %}border-bottom{% endunless %}">
+<header class="rr-nav {% unless homepage %}rr-nav--border{% endunless %}" id="rrNav">
   <div class="container-lg px-3">
-    <div class="py-4 d-flex flex-justify-between">
-      <h1 class="h4 lh-default" style="min-height:48px;display:flex;align-items:center;">
+    <div class="rr-nav__inner">
+
+      <!-- Logo / brand -->
+      <div class="rr-nav__brand">
         {% unless homepage %}
-        <a href="/" class=" no-underline  text-brand-blue-dark d-flex flex-items-center">
-          <img class="mr-2 mt-n2" src="/assets/img/probot-head.png" width="36" height="36" alt="">
-          <span class="title-head">Riaz Raza</span>
+        <a href="/" class="rr-nav__logo no-underline d-flex flex-items-center" aria-label="Home">
+          <img src="/assets/img/probot-head.png" width="32" height="32" alt="" class="rr-nav__avatar">
+          <span class="title-head rr-nav__name">Riaz Raza</span>
         </a>
         {% endunless %}
-      </h1>
-      <div>
-      <div class="burger-menu" id="burgerMenu">
-        <div class="burger-bar"></div>
-        <div class="burger-bar"></div>
-        <div class="burger-bar"></div>
       </div>
-      <nav class="NavbarNav text-bold text-right" id="navbarNav">
-        <a class="text-inherit px-2 d-inline-block" href="/" data-i18n="nav.home">Home</a>
-        <a class="text-inherit px-2 d-inline-block" href="/projects/" data-i18n="nav.projects">Projects</a>
-        <a class="text-inherit px-2 d-inline-block" href="/blog/" data-i18n="nav.blog">Blog</a>
-        <a class="text-inherit px-2 d-inline-block" href="/products/" data-i18n="nav.products">Products</a>
-        <a class="text-inherit px-2 d-inline-block" href="/about/" data-i18n="nav.about">About</a>
-        <a class="text-inherit px-2 d-inline-block" href="/contact/" data-i18n="nav.contact">Contact</a>
+
+      <!-- Desktop links + tools -->
+      <nav class="rr-nav__links" id="navbarNav" aria-label="Main navigation">
+        <a class="rr-nav__link {% if page.url == '/' %}rr-nav__link--active{% endif %}" href="/" data-i18n="nav.home">Home</a>
+        <a class="rr-nav__link {% if page.url contains '/projects' %}rr-nav__link--active{% endif %}" href="/projects/" data-i18n="nav.projects">Projects</a>
+        <a class="rr-nav__link {% if page.url contains '/blog' %}rr-nav__link--active{% endif %}" href="/blog/" data-i18n="nav.blog">Blog</a>
+        <a class="rr-nav__link {% if page.url contains '/products' %}rr-nav__link--active{% endif %}" href="/products/" data-i18n="nav.products">Products</a>
+        <a class="rr-nav__link {% if page.url contains '/about' %}rr-nav__link--active{% endif %}" href="/about/" data-i18n="nav.about">About</a>
+        <a class="rr-nav__link {% if page.url contains '/contact' %}rr-nav__link--active{% endif %}" href="/contact/" data-i18n="nav.contact">Contact</a>
+
+        <span class="rr-nav__sep" aria-hidden="true"></span>
+
+        <!-- Language dropdown -->
         <div class="lang-dropdown-wrap">
           <button class="lang-toggle-btn" id="lang-toggle-btn" aria-haspopup="listbox" aria-expanded="false" title="Switch language">🌐 <span id="lang-label">EN</span> ▾</button>
           <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
@@ -33,17 +35,277 @@
             <li role="option" data-lang="UR" class="lang-option">🇵🇰 اردو</li>
           </ul>
         </div>
+
+        <!-- Manga/Games toggle -->
         <button id="manga-toggle" class="manga-toggle-btn" aria-pressed="false" title="Toggle Manga/Games Mode">🎌 <span class="btn-icon" data-i18n="nav.manga">Manga</span></button>
       </nav>
-      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="rr-burger" id="burgerMenu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbarNav">
+        <span class="rr-burger__bar"></span>
+        <span class="rr-burger__bar"></span>
+        <span class="rr-burger__bar"></span>
+      </button>
+
     </div>
   </div>
-</div>
-<script>
-  const burgerMenu = document.getElementById('burgerMenu');
-  const navbarNav = document.getElementById('navbarNav');
+</header>
 
-  burgerMenu.addEventListener('click', () => {
-    navbarNav.classList.toggle('open');
+<!-- Mobile overlay -->
+<div class="rr-nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<style>
+  /* ── Nav shell ── */
+  .rr-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: box-shadow 0.2s ease;
+  }
+  .rr-nav--border  { border-bottom: 1px solid #e8eaed; }
+  .rr-nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+  .rr-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    gap: 1rem;
+  }
+
+  /* ── Brand ── */
+  .rr-nav__brand { flex-shrink: 0; min-width: 40px; }
+  .rr-nav__logo  { gap: 0.5rem; }
+  .rr-nav__avatar { border-radius: 50%; }
+  .rr-nav__name  {
+    font-size: 1.1rem;
+    font-family: 'Pacifico', cursive;
+    white-space: nowrap;
+    color: #24292f;
+  }
+
+  /* ── Links ── */
+  .rr-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    flex-wrap: nowrap;
+  }
+
+  .rr-nav__link {
+    position: relative;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #444;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: color 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+  .rr-nav__link:hover {
+    color: #1976d2;
+    background: rgba(25,118,210,0.06);
+    text-decoration: none;
+  }
+  .rr-nav__link--active {
+    color: #1976d2;
+    font-weight: 700;
+  }
+  .rr-nav__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0.55rem;
+    right: 0.55rem;
+    height: 2px;
+    background: #1976d2;
+    border-radius: 2px;
+  }
+
+  /* ── Separator ── */
+  .rr-nav__sep {
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background: #d0d7de;
+    margin: 0 0.3rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Hamburger ── */
+  .rr-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
+  }
+  .rr-burger:hover { background: #f6f8fa; }
+  .rr-burger__bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #444;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+  /* Animate to X */
+  .rr-burger.open .rr-burger__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .rr-burger.open .rr-burger__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .rr-burger.open .rr-burger__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Mobile overlay ── */
+  .rr-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 99;
+    backdrop-filter: blur(2px);
+  }
+  .rr-nav-overlay.open { display: block; }
+
+  /* ── Mobile breakpoint ── */
+  @media (max-width: 767px) {
+    .rr-burger { display: flex; }
+
+    .rr-nav__links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(320px, 85vw);
+      height: 100dvh;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 2rem 1.5rem;
+      background: #fff;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+      z-index: 100;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .rr-nav__links.open { right: 0; }
+
+    .rr-nav__link {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+    }
+    .rr-nav__link--active::after { display: none; }
+    .rr-nav__link--active {
+      background: rgba(25,118,210,0.08);
+      border-radius: 6px;
+    }
+
+    .rr-nav__sep {
+      width: 100%;
+      height: 1px;
+      margin: 0.5rem 0;
+    }
+
+    .lang-dropdown-wrap,
+    .manga-toggle-btn {
+      align-self: flex-start;
+    }
+
+    .lang-dropdown {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  /* ── Manga mode nav ── */
+  body.manga-mode .rr-nav {
+    border-bottom: 2px solid var(--rr-border-ink);
+  }
+  body.manga-mode .rr-nav__link--active {
+    color: var(--rr-accent-manga);
+  }
+  body.manga-mode .rr-nav__link--active::after {
+    background: var(--rr-accent-manga);
+  }
+  body.manga-mode .rr-nav__link:hover {
+    color: var(--rr-accent-manga);
+    background: rgba(230,0,38,0.06);
+  }
+  body.manga-mode .rr-nav {
+    background: rgba(255,255,255,0.95);
+  }
+
+  /* ── Dark mode ── */
+  @media (prefers-color-scheme: dark) {
+    .rr-nav { background: rgba(13,17,23,0.92); }
+    .rr-nav--border { border-bottom-color: #30363d; }
+    .rr-nav__link { color: #cdd5de; }
+    .rr-nav__link:hover { color: #58a6ff; background: rgba(88,166,255,0.08); }
+    .rr-nav__link--active { color: #58a6ff; }
+    .rr-nav__link--active::after { background: #58a6ff; }
+    .rr-nav__sep { background: #30363d; }
+    .rr-burger__bar { background: #cdd5de; }
+    .rr-burger:hover { background: #161b22; }
+    .rr-nav__name { color: #e6edf3; }
+    @media (max-width: 767px) {
+      .rr-nav__links { background: #0d1117; box-shadow: -4px 0 24px rgba(0,0,0,0.4); }
+    }
+  }
+</style>
+
+<script>
+(function () {
+  const burger  = document.getElementById('burgerMenu');
+  const nav     = document.getElementById('navbarNav');
+  const overlay = document.getElementById('navOverlay');
+  const header  = document.getElementById('rrNav');
+
+  function openMenu() {
+    nav.classList.add('open');
+    overlay.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    overlay.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    nav.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    nav.classList.contains('open') ? closeMenu() : openMenu();
   });
+
+  overlay.addEventListener('click', closeMenu);
+
+  // Close on nav link click (mobile)
+  nav.querySelectorAll('.rr-nav__link').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Scroll shadow
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+})();
 </script>
