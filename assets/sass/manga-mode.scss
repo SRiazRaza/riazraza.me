@@ -84,6 +84,32 @@ body.manga-mode .border-top {
   border-top: 3px solid var(--rr-border-ink) !important;
 }
 
+// Language toggle button — always visible
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-muted, #d0d7de);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-text-secondary, #57606a);
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  line-height: 1.4;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+
+.lang-toggle-btn:hover {
+  border-color: #1976d2;
+  background: rgba(25, 118, 210, 0.07);
+  color: #1976d2;
+}
+
 // Manga mode toggle button — always visible, adapts to state
 .manga-toggle-btn {
   display: inline-flex;

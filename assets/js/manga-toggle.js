@@ -17,8 +17,15 @@
   function updateToggleUI(active) {
     var btn = document.getElementById('manga-toggle');
     if (!btn) return;
-    btn.textContent = active ? '🎌 Manga: ON' : '🎌 Manga';
+    // Preserve the icon span if present, update text label
+    var iconSpan = btn.querySelector('.btn-icon');
+    if (iconSpan) {
+      iconSpan.textContent = active ? 'Games+Manga: ON' : 'Manga';
+    } else {
+      btn.textContent = active ? '🎌 Games+Manga: ON' : '🎌 Manga';
+    }
     btn.setAttribute('aria-pressed', String(active));
+    btn.setAttribute('title', active ? 'Toggle off Manga/Games Mode' : 'Toggle on Manga/Games Mode');
   }
 
   function setMangaMode(active) {
@@ -33,6 +40,13 @@
     }
     history.replaceState(null, '', url.toString());
     updateToggleUI(active);
+    dispatchMangaEvent(active);
+  }
+
+  function dispatchMangaEvent(active) {
+    try {
+      window.dispatchEvent(new CustomEvent('mangaModeChange', { detail: { active: active } }));
+    } catch (_) {}
   }
 
   // Resolve initial state from localStorage or URL param
@@ -53,7 +67,16 @@
     var btn = document.getElementById('manga-toggle');
     if (btn) {
       btn.addEventListener('click', function () {
-        setMangaMode(!document.body.classList.contains('manga-mode'));
+        var nowActive = !document.body.classList.contains('manga-mode');
+        setMangaMode(nowActive);
+        // Controller pulse animation
+        var icon = btn.querySelector('.btn-icon');
+        if (icon) {
+          icon.style.animation = 'none';
+          // force reflow
+          void icon.offsetWidth;
+          icon.style.animation = '';
+        }
       });
     }
 
@@ -91,8 +114,9 @@
       '<div class="egg-panel">',
       '  <button class="egg-close" aria-label="Close">✕</button>',
       '  <h2>🎌 Secret Unlocked!</h2>',
-      '  <p>ML Engineer by day. Manga reader by night.</p>',
+      '  <p>ML Engineer by day. Manga reader &amp; retro gamer by night.</p>',
       '  <p>Favourites: <em>JoJo\'s, Berserk, Vinland Saga</em></p>',
+      '  <p>🎮 Currently playing: something retro, obviously.</p>',
       '  <p class="egg-tagline">「人は皆、可能性に満ちている」</p>',
       '  <p style="font-size:0.8rem;margin-top:1rem;opacity:0.5">Press ESC or click outside to close</p>',
       '</div>'

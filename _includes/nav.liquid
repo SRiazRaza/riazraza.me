@@ -1,6 +1,6 @@
 {% if page.url == '/' %}{% assign homepage = true %}{% endif %}
 <link href="https://fonts.cdnfonts.com/css/pacifico" rel="stylesheet">
-                
+
 <div class="{% unless homepage %}border-bottom{% endunless %}">
   <div class="container-lg px-3">
     <div class="py-4 d-flex flex-justify-between">
@@ -19,10 +19,14 @@
         <div class="burger-bar"></div>
       </div>
       <nav class="NavbarNav text-bold text-right" id="navbarNav">
-        <a class="text-inherit px-2 d-inline-block" href="/projects/">Projects</a>
-        <a class="text-inherit px-2 d-inline-block" href="/blog/">Blog</a>
-        <a class="text-inherit px-2 d-inline-block" href="/products/">My Products</a>
-        <button id="manga-toggle" class="manga-toggle-btn" aria-pressed="false" title="Toggle Manga Mode">🎌 Manga</button>
+        <a class="text-inherit px-2 d-inline-block" href="/" data-i18n="nav.home">Home</a>
+        <a class="text-inherit px-2 d-inline-block" href="/projects/" data-i18n="nav.projects">Projects</a>
+        <a class="text-inherit px-2 d-inline-block" href="/blog/" data-i18n="nav.blog">Blog</a>
+        <a class="text-inherit px-2 d-inline-block" href="/products/" data-i18n="nav.products">Products</a>
+        <a class="text-inherit px-2 d-inline-block" href="/about/" data-i18n="nav.about">About</a>
+        <a class="text-inherit px-2 d-inline-block" href="/contact/" data-i18n="nav.contact">Contact</a>
+        <button id="lang-toggle" class="lang-toggle-btn" aria-label="Toggle language" title="Switch language">🌐 <span id="lang-label">EN</span></button>
+        <button id="manga-toggle" class="manga-toggle-btn" aria-pressed="false" title="Toggle Manga/Games Mode">🎌 <span class="btn-icon" data-i18n="nav.manga">Manga</span></button>
       </nav>
       </div>
     </div>
