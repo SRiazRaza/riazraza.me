@@ -28051,6 +28051,23 @@ a.branch-name .octicon {
   z-index: -2 !important;
 }
 
+:root {
+  --rr-radius: 8px;
+  --rr-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --rr-transition: 0.2s ease;
+  --rr-font-heading: "Gentium Book Basic", Georgia, serif;
+  --rr-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --rr-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body.manga-mode {
+  --rr-radius: 3px;
+  --rr-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
+  --rr-border-ink: #1a1a1a;
+  --rr-accent-manga: #e60026;
+  --rr-font-heading: "Bangers", "Gentium Book Basic", serif;
+}
+
 .timeline-comment {
   position: relative;
 }
@@ -28478,6 +28495,182 @@ input:checked + .switcher-item {
   }
   .token.inserted {
     color: green;
+  }
+}
+body.manga-mode .section-bg {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+body.manga-mode .project-card {
+  border: 2px solid var(--rr-border-ink) !important;
+  box-shadow: var(--rr-shadow) !important;
+  border-radius: var(--rr-radius) !important;
+  transition: transform var(--rr-transition), box-shadow var(--rr-transition);
+}
+
+body.manga-mode .project-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85) !important;
+}
+
+body.manga-mode .product-card {
+  border: 2px solid var(--rr-border-ink) !important;
+  box-shadow: var(--rr-shadow) !important;
+  border-radius: var(--rr-radius) !important;
+  transition: transform var(--rr-transition), box-shadow var(--rr-transition);
+}
+
+body.manga-mode .product-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85) !important;
+}
+
+body.manga-mode .achievement-quote {
+  border: 2px solid var(--rr-border-ink);
+  border-radius: var(--rr-radius);
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  background: white;
+  font-style: italic;
+  display: inline-block;
+}
+
+body.manga-mode .achievement-quote::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 32px;
+  border: 12px solid transparent;
+  border-top-color: var(--rr-border-ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.manga-mode .skill-badge:hover,
+  body.manga-mode .tech-badge:hover {
+    animation: unlockPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    box-shadow: 0 0 0 2px var(--rr-accent-manga);
+  }
+}
+@keyframes unlockPop {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  40% {
+    transform: scale(1.18) translateY(-5px);
+  }
+  70% {
+    transform: scale(0.96) translateY(-2px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+body.manga-mode h1,
+body.manga-mode h2,
+body.manga-mode .title {
+  font-family: var(--rr-font-heading);
+  letter-spacing: 0.04em;
+}
+
+body.manga-mode .border-top {
+  border-top: 3px solid var(--rr-border-ink) !important;
+}
+
+.manga-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-muted, #d0d7de);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-text-secondary, #57606a);
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  line-height: 1.4;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.manga-toggle-btn:hover {
+  border-color: var(--color-border-default, #d0d7de);
+  background: var(--color-canvas-subtle, #f6f8fa);
+}
+
+body.manga-mode .manga-toggle-btn {
+  border-color: #e60026 !important;
+  color: #e60026 !important;
+  background: rgba(230, 0, 38, 0.07) !important;
+}
+
+#manga-easter-egg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.egg-panel {
+  background: white;
+  border: 3px solid #1a1a1a;
+  box-shadow: 8px 8px 0 #1a1a1a;
+  border-radius: 4px;
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  font-family: var(--rr-font-heading);
+}
+
+.egg-panel h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.egg-panel p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.egg-tagline {
+  margin-top: 1.25rem !important;
+  font-size: 0.95rem !important;
+  color: #555;
+  font-style: italic;
+}
+
+.egg-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  border: none;
+  background: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #555;
+  line-height: 1;
+}
+
+.egg-close:hover {
+  color: var(--rr-accent-manga);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.manga-mode *,
+  body.manga-mode *::before,
+  body.manga-mode *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 img {

@@ -1,10 +1,12 @@
 @import "vendor.scss";
+@import "tokens.scss";
 @import "pages/home.scss";
 @import "colors.scss";
 @import "markdown.scss";
 @import "switcher.scss";
 @import "addtocalendar.scss";
 @import "syntax.scss";
+@import "manga-mode.scss";
 
 img {
   max-width: 100%;
