@@ -1,0 +1,98 @@
+categories:
+  - name: Languages
+    icon: "code"
+    skills:
+      - name: Python
+        proficiency: Expert
+      - name: JavaScript/TypeScript
+        proficiency: Advanced
+      - name: C#
+        proficiency: Advanced
+      - name: C++
+        proficiency: Intermediate
+      - name: Java
+        proficiency: Intermediate
+      - name: Rust
+        proficiency: Beginner
+
+  - name: Machine Learning & AI
+    icon: "brain"
+    skills:
+      - name: PyTorch
+        proficiency: Expert
+      - name: TensorFlow
+        proficiency: Advanced
+      - name: scikit-learn
+        proficiency: Advanced
+      - name: Deep Learning
+        proficiency: Expert
+      - name: Computer Vision
+        proficiency: Advanced
+      - name: NLP & LLMs
+        proficiency: Intermediate
+      - name: Reinforcement Learning
+        proficiency: Intermediate
+
+  - name: Web Frameworks
+    icon: "globe"
+    skills:
+      - name: React
+        proficiency: Advanced
+      - name: Django
+        proficiency: Advanced
+      - name: FastAPI
+        proficiency: Advanced
+      - name: Node.js
+        proficiency: Intermediate
+      - name: Vue.js
+        proficiency: Intermediate
+      - name: Eleventy
+        proficiency: Advanced
+
+  - name: Data & Databases
+    icon: "database"
+    skills:
+      - name: SQL
+        proficiency: Expert
+      - name: PostgreSQL
+        proficiency: Advanced
+      - name: MongoDB
+        proficiency: Advanced
+      - name: Redis
+        proficiency: Intermediate
+      - name: Pandas
+        proficiency: Expert
+      - name: Data Visualization
+        proficiency: Advanced
+
+  - name: DevOps & Cloud
+    icon: "cloud"
+    skills:
+      - name: Docker
+        proficiency: Advanced
+      - name: Kubernetes
+        proficiency: Intermediate
+      - name: AWS
+        proficiency: Advanced
+      - name: Google Cloud Platform
+        proficiency: Intermediate
+      - name: CI/CD Pipelines
+        proficiency: Advanced
+      - name: GitHub Actions
+        proficiency: Advanced
+
+  - name: Tools & Platforms
+    icon: "tools"
+    skills:
+      - name: Git & GitHub
+        proficiency: Expert
+      - name: Jupyter Notebooks
+        proficiency: Expert
+      - name: VS Code
+        proficiency: Expert
+      - name: Linux/Unix
+        proficiency: Advanced
+      - name: REST APIs
+        proficiency: Expert
+      - name: Figma
+        proficiency: Intermediate
