@@ -139,7 +139,7 @@
       '  <button class="egg-close" aria-label="Close">✕</button>',
       '  <h2>🎌 Secret Unlocked!</h2>',
       '  <p>ML Engineer by day. Manga reader &amp; strategy gamer by night.</p>',
-      '  <p>📚 Manga: <em>JoJo\'s, Berserk, Vinland Saga, Solo Leveling, Naruto</em></p>',
+      '  <p>📚 Manga: <em>Solo Leveling, Naruto</em></p>',
       '  <p>📖 Manhwa/Manhua: <em>Murim Log-In, Surviving as a Barbarian in a Game</em></p>',
       '  <p>🎮 Games: <em>Age of Empires 3, Total War series, Anno 1404, Mount &amp; Blade, Far Cry 3/4, Sid Meier\'s Pirates!</em></p>',
       '  <p>⏳ Want to play: <em>Red Dead Redemption 2, Watch Dogs 2, Far Cry 5, Rising Lords, Conqueror\'s Blade</em></p>',
