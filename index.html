@@ -87,11 +87,12 @@ layout: default
 
 
 <!-- Products Section -->
-<div id="products" class="section-bg color-bg-tertiary-light border-top border-gray-light">
+<hr class="rr-divider">
+<div id="products" class="section-bg color-bg-tertiary-light border-gray-light">
   <div class="container-lg px-3 pt-4 page-section">
     <h2 class="h1 text-center rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.products">Products</h2>
-    
-    <div class="d-md-flex flex-wrap gutter flex-auto">
+
+    <div class="d-md-flex flex-wrap gutter flex-auto rr-reveal">
       {% assign products = collections.products | sort: "updated" | reverse %}
       {% for product in products limit:3 %}
         <a href="{{ product.url }}" style="text-decoration:none;">
@@ -100,8 +101,8 @@ layout: default
       {% endfor %}
     </div>
 
-    <div class="text-center my-6">
-      <a class="btn btn-outline-primary btn-large" href="/products/">
+    <div class="text-center my-6 rr-reveal">
+      <a class="btn btn-outline-primary btn-large btn-cta" href="/products/" data-i18n="sections.more_products">
         Explore more Products
       </a>
     </div>
@@ -109,20 +110,23 @@ layout: default
 </div>
 
 <!-- Projects Section -->
-<div id="explore" class="section-bg color-bg-tertiary-light border-top border-gray-light">
+<hr class="rr-divider">
+<div id="explore" class="section-bg color-bg-tertiary-light border-gray-light">
   <div class="container-lg px-3 pt-4 page-section">
     <h2 class="h1 text-center rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.projects">Projects</h2>
-    <p class="lead text-center col-md-8 col-sm-10 mx-auto">
+    <p class="lead text-center col-md-8 col-sm-10 mx-auto rr-reveal">
       Explore my open-source projects, which include personal endeavors, freelance collaborations, and university projects with reports. These projects are freely available for use in your own work.
     </p>
 
-    <div class="d-md-flex flex-wrap gutter flex-auto">
-      {% assign projects = collections.projects  | sort: "name" | reverse%} {% for project
-      in projects limit:3 %} {% include "project" project: project.data %} {% endfor %}
+    <div class="d-md-flex flex-wrap gutter flex-auto rr-reveal">
+      {% assign projects = collections.projects | sort: "name" | reverse %}
+      {% for project in projects limit:3 %}
+        {% include "project" project: project.data %}
+      {% endfor %}
     </div>
 
-    <div class="text-center my-6">
-      <a class="btn  btn-outline-primary btn-large" href="/projects/">
+    <div class="text-center my-6 rr-reveal">
+      <a class="btn btn-outline-primary btn-large btn-cta" href="/projects/" data-i18n="sections.more_projects">
         {% octicon "telescope" class="mr-2" %} Explore more Projects
       </a>
     </div>
@@ -131,11 +135,12 @@ layout: default
 
 
 
-<div id="build" class="border-top page-section f4 pt-4" >
+<hr class="rr-divider">
+<div id="build" class="page-section f4 pt-4">
   <div class="container-lg px-3">
     <h2 class="h1 text-center lh-condensed rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.achievements">Achievements and Accomplishments</h2>
     <p class="achievement-quote alt-lead text-center mb-6 font-mono">"Everyone can do something."- Mother Teresa</p>
-    <div class="page-section d-flex flex-column flex-md-row gutter flex-items-center flex-md-items-center">
+    <div class="page-section d-flex flex-column flex-md-row gutter flex-items-center flex-md-items-center rr-reveal">
       <div class="col-md-6 hide-md">
         <!-- Bootstrap Carousel for sliding images -->
         <div id="achievementCarousel" class="carousel slide" data-ride="carousel" >
@@ -190,10 +195,11 @@ layout: default
 </div>
 
     <!--Education Part -->
-<div id="education" class=" border-top page-section f4 pt-4 mt-4">
+<hr class="rr-divider">
+<div id="education" class="page-section f4 pt-4 mt-4">
       <div class="container-lg px-3">
       <h2 class="h1 text-center lh-condensed" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Education</h2>
-      <div class="d-md-flex flex-md-row gutter-md flex-md-items-center">
+      <div class="d-md-flex flex-md-row gutter-md flex-md-items-center rr-reveal">
         <div class="col-md-6">
           <h3 class="h3 mb-2" style="font-family: 'Garamond', serif;">MSc in Computer Science - 2021 - 2024</h3>
           <h3 class="h3 mb-2" style="font-family: 'Garamond', serif;">Universit`a Degli Studi di Padova, Italy </h3>
