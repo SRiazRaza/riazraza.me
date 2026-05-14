@@ -137,19 +137,56 @@
     if (label) label.textContent = lang;
   }
 
-  // Cycle to next language on button click
-  function cycleLanguage() {
-    const current = getLang();
-    const idx = LANGS.indexOf(current);
-    const next = LANGS[(idx + 1) % LANGS.length];
-    setLang(next);
+  function updateDropdownActive(lang) {
+    document.querySelectorAll('.lang-option').forEach(li => {
+      li.classList.toggle('active', li.dataset.lang === lang);
+    });
+    const label = document.getElementById('lang-label');
+    if (label) label.textContent = lang;
+  }
+
+  function closeDropdown() {
+    const wrap = document.getElementById('lang-toggle-btn')?.closest('.lang-dropdown-wrap');
+    if (wrap) wrap.classList.remove('open');
+    const btn = document.getElementById('lang-toggle-btn');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
   }
 
   // Init
   const currentLang = getLang();
   document.addEventListener('DOMContentLoaded', () => {
     applyLang(currentLang);
-    const btn = document.getElementById('lang-toggle');
-    if (btn) btn.addEventListener('click', cycleLanguage);
+    updateDropdownActive(currentLang);
+
+    const btn = document.getElementById('lang-toggle-btn');
+    const wrap = btn?.closest('.lang-dropdown-wrap');
+
+    if (btn && wrap) {
+      // Toggle dropdown open/close
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // Handle option selection
+    document.querySelectorAll('.lang-option').forEach(li => {
+      li.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const lang = li.dataset.lang;
+        if (lang) {
+          setLang(lang);
+          updateDropdownActive(lang);
+          closeDropdown();
+        }
+      });
+    });
+
+    // Close on outside click or Escape
+    document.addEventListener('click', closeDropdown);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDropdown();
+    });
   });
 })();

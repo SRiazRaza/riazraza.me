@@ -25,7 +25,14 @@
         <a class="text-inherit px-2 d-inline-block" href="/products/" data-i18n="nav.products">Products</a>
         <a class="text-inherit px-2 d-inline-block" href="/about/" data-i18n="nav.about">About</a>
         <a class="text-inherit px-2 d-inline-block" href="/contact/" data-i18n="nav.contact">Contact</a>
-        <button id="lang-toggle" class="lang-toggle-btn" aria-label="Toggle language" title="Switch language">🌐 <span id="lang-label">EN</span></button>
+        <div class="lang-dropdown-wrap">
+          <button class="lang-toggle-btn" id="lang-toggle-btn" aria-haspopup="listbox" aria-expanded="false" title="Switch language">🌐 <span id="lang-label">EN</span> ▾</button>
+          <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+            <li role="option" data-lang="EN" class="lang-option active">🇬🇧 English</li>
+            <li role="option" data-lang="IT" class="lang-option">🇮🇹 Italiano</li>
+            <li role="option" data-lang="UR" class="lang-option">🇵🇰 اردو</li>
+          </ul>
+        </div>
         <button id="manga-toggle" class="manga-toggle-btn" aria-pressed="false" title="Toggle Manga/Games Mode">🎌 <span class="btn-icon" data-i18n="nav.manga">Manga</span></button>
       </nav>
       </div>
