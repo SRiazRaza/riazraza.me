@@ -1,5 +1,5 @@
 ---
-title: RF-based drones detection ML
+title: RF-based Drone Detection ML
 description: RF-based data acquisition and detection of drones using Machine Learning.
 slug: WNMA
 screenshots:
@@ -11,26 +11,31 @@ authors:
 repository: SRiazRaza/WNMA/blob/main/WNMA_Project.pdf
 stars: 0
 updated: 2023-09-01 08:05:07 UTC
-host: https://github.com/SRiazRaza/
+host: https://github.com/SRiazRaza/WNMA
 organizations:
-  - NN Premium Water Pvt Limited
+  - University of Padova
 ---
 
-✨ NN Premium Water is an industrial software solution designed to automate and manage water supply deliveries for **NN Premium Water Pvt Limited**. The system enhances the efficiency of supply chain operations by providing tools to manage inventory, track deliveries, and oversee logistical processes. Built with **C#**, **MySQL**, and **DotNETReactor**, the projectlication ensures secure and reliable performance for water supply management.
+✨ This project focuses on **RF-based data acquisition and machine learning classification for drone detection**. RC drone receivers emit PWM (Pulse Width Modulation) signals across multiple channels; the system captures these raw RF signals, extracts signal-to-noise ratio (SNR) features, and trains a machine learning model to identify drone presence and activity patterns.
+
+The data pipeline reads 6-channel PWM data via a low-level C acquisition module, processes the raw signal through a Python utility layer for noise filtering and feature extraction, and feeds structured datasets into Jupyter-based ML experiments (run on Google Colab). Visualisations and evaluation metrics confirm model accuracy across different flight scenarios.
 
 #### Model: Project
 
 #### Tags:
-  - Desktop projectlication
-  - Industrial Software
-  - Supply Chain
-  - Payroll
+  - Machine Learning
+  - Signal Processing
+  - Drone Detection
+  - RF Analysis
+  - Wireless Networks
 
 #### Roles:
-  - Software Developer
+  - ML Engineer
+  - Research Developer
 
 #### Stack:
-  - C#
-  - MySQL
-  - DotNETReactor
-  - XML
+  - Python
+  - Jupyter Notebook
+  - Google Colab
+  - C (data acquisition)
+  - Signal Processing
