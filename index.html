@@ -37,13 +37,18 @@ layout: default
         class="d-md-flex flex-md-items-center flex-md-row-reverse flex-md-justify-center gutter-md-spacious"
       >
         <div class="col-md-8 text-center text-md-left">
-          <h1  class="title">
+          <h1 class="title hero-fade-in" data-i18n="hero.title">
             Syed Riaz Raza
           </h1>
-          <h2 class="subtitle">
+          <h2 class="subtitle typing-cursor hero-fade-in" data-i18n="hero.subtitle">
              ML Engineer | Jr Research Engineer
           </h2>
-        
+
+          <div class="d-flex flex-justify-center flex-wrap mt-3 mb-3" style="gap:0.6rem;">
+            <a href="/projects/" class="btn btn-primary btn-cta hero-fade-in" data-i18n="hero.cta_work">View My Work</a>
+            <a href="/contact/" class="btn btn-outline hero-fade-in btn-cta" data-i18n="hero.cta_contact">Get in Touch</a>
+          </div>
+
           <div class="d-flex flex-justify-center mt-2">
 
             <a href="mailto:riazraza0@gmail.com" target="_blank" class="btn-link color-text-link mx-2" aria-label="email">
@@ -73,7 +78,7 @@ layout: default
         <div
           class="col-3 mx-auto mx-md-0 offset-md-1 text-center text-md-right"
         >
-          <img src="/assets/img/logo.png" class="rounded-xl" alt="riaz logo" />
+          <img src="/assets/img/logo.png" class="rounded-xl" alt="riaz logo" loading="lazy" />
         </div>
       </div>
     </div>
@@ -82,11 +87,12 @@ layout: default
 
 
 <!-- Products Section -->
-<div id="products" class="color-bg-tertiary-light border-top border-gray-light">
+<hr class="rr-divider">
+<div id="products" class="section-bg color-bg-tertiary-light border-gray-light">
   <div class="container-lg px-3 pt-4 page-section">
-    <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Products</h2>
-    
-    <div class="d-md-flex flex-wrap gutter flex-auto">
+    <h2 class="h1 text-center rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.products">Products</h2>
+
+    <div class="d-md-flex flex-wrap gutter flex-auto rr-reveal">
       {% assign products = collections.products | sort: "updated" | reverse %}
       {% for product in products limit:3 %}
         <a href="{{ product.url }}" style="text-decoration:none;">
@@ -95,8 +101,8 @@ layout: default
       {% endfor %}
     </div>
 
-    <div class="text-center my-6">
-      <a class="btn btn-outline-primary btn-large" href="/products/">
+    <div class="text-center my-6 rr-reveal">
+      <a class="btn btn-outline-primary btn-large btn-cta" href="/products/" data-i18n="sections.more_products">
         Explore more Products
       </a>
     </div>
@@ -104,20 +110,23 @@ layout: default
 </div>
 
 <!-- Projects Section -->
-<div id="explore" class="color-bg-tertiary-light border-top border-gray-light">
+<hr class="rr-divider">
+<div id="explore" class="section-bg color-bg-tertiary-light border-gray-light">
   <div class="container-lg px-3 pt-4 page-section">
-    <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Projects</h2>
-    <p class="lead text-center col-md-8 col-sm-10 mx-auto">
+    <h2 class="h1 text-center rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.projects">Projects</h2>
+    <p class="lead text-center col-md-8 col-sm-10 mx-auto rr-reveal">
       Explore my open-source projects, which include personal endeavors, freelance collaborations, and university projects with reports. These projects are freely available for use in your own work.
     </p>
 
-    <div class="d-md-flex flex-wrap gutter flex-auto">
-      {% assign projects = collections.projects  | sort: "name" | reverse%} {% for project
-      in projects limit:3 %} {% include "project" project: project.data %} {% endfor %}
+    <div class="d-md-flex flex-wrap gutter flex-auto rr-reveal">
+      {% assign projects = collections.projects | sort: "name" | reverse %}
+      {% for project in projects limit:3 %}
+        {% include "project" project: project.data %}
+      {% endfor %}
     </div>
 
-    <div class="text-center my-6">
-      <a class="btn  btn-outline-primary btn-large" href="/projects/">
+    <div class="text-center my-6 rr-reveal">
+      <a class="btn btn-outline-primary btn-large btn-cta" href="/projects/" data-i18n="sections.more_projects">
         {% octicon "telescope" class="mr-2" %} Explore more Projects
       </a>
     </div>
@@ -126,11 +135,12 @@ layout: default
 
 
 
-<div id="build" class="border-top page-section f4 pt-4" >
+<hr class="rr-divider">
+<div id="build" class="page-section f4 pt-4">
   <div class="container-lg px-3">
-    <h2 class="h1 text-center lh-condensed" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Achievements and Accomplishments</h2>
-    <p class="alt-lead text-center mb-6 font-mono">"Everyone can do something."- Mother Teresa</p>
-    <div class="page-section d-flex flex-column flex-md-row gutter flex-items-center flex-md-items-center">
+    <h2 class="h1 text-center lh-condensed rr-reveal" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;" data-i18n="sections.achievements">Achievements and Accomplishments</h2>
+    <p class="achievement-quote alt-lead text-center mb-6 font-mono">"Everyone can do something."- Mother Teresa</p>
+    <div class="page-section d-flex flex-column flex-md-row gutter flex-items-center flex-md-items-center rr-reveal">
       <div class="col-md-6 hide-md">
         <!-- Bootstrap Carousel for sliding images -->
         <div id="achievementCarousel" class="carousel slide" data-ride="carousel" >
@@ -146,15 +156,15 @@ layout: default
           <div class="carousel-inner" >
             <!-- First Slide -->
             <div class="carousel-item active">
-              <img src="/assets/img/achievement.jpg" class="d-block w-100" style="object-fit: cover;  height: 300px;" alt="Achievement 1">
+              <img src="/assets/img/achievement.jpg" class="d-block w-100" loading="lazy" style="object-fit: cover;  height: 300px;" alt="Achievement 1">
             </div>
             <!-- Second Slide -->
             <div class="carousel-item">
-              <img src="/assets/img/achievement2.jpg" class="d-block w-100" style="object-fit: cover;  height: 300px;" alt="Achievement 2">
+              <img src="/assets/img/achievement2.jpg" class="d-block w-100" loading="lazy" style="object-fit: cover;  height: 300px;" alt="Achievement 2">
             </div>
             <!-- Third Slide -->
             <div class="carousel-item">
-              <img src="/assets/img/achievement3.jpg" class="d-block w-100" style="object-fit: cover;  height: 300px;" alt="Achievement 3">
+              <img src="/assets/img/achievement3.jpg" class="d-block w-100" loading="lazy" style="object-fit: cover;  height: 300px;" alt="Achievement 3">
             </div>
         
             
@@ -185,10 +195,11 @@ layout: default
 </div>
 
     <!--Education Part -->
-<div id="education" class=" border-top page-section f4 pt-4 mt-4">
+<hr class="rr-divider">
+<div id="education" class="page-section f4 pt-4 mt-4">
       <div class="container-lg px-3">
       <h2 class="h1 text-center lh-condensed" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Education</h2>
-      <div class="d-md-flex flex-md-row gutter-md flex-md-items-center">
+      <div class="d-md-flex flex-md-row gutter-md flex-md-items-center rr-reveal">
         <div class="col-md-6">
           <h3 class="h3 mb-2" style="font-family: 'Garamond', serif;">MSc in Computer Science - 2021 - 2024</h3>
           <h3 class="h3 mb-2" style="font-family: 'Garamond', serif;">Universit`a Degli Studi di Padova, Italy </h3>
@@ -202,19 +213,19 @@ layout: default
           <div id="educationCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/assets/img/education1.jpg" class="d-block mx-auto" alt="Education Image 1" style="height: 300px; object-fit: cover;">
+                <img src="/assets/img/education1.jpg" class="d-block mx-auto" loading="lazy" alt="Education Image 1" style="height: 300px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block">
                   
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/education2.jpg" class="d-block mx-auto" alt="Education Image 2" style="height: 300px; object-fit: cover;">
+                <img src="/assets/img/education2.jpg" class="d-block mx-auto" loading="lazy" alt="Education Image 2" style="height: 300px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block">
                   
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/education3.jpg" class="d-block mx-auto" alt="Education Image 3" style="height: 300px; object-fit: cover;">
+                <img src="/assets/img/education3.jpg" class="d-block mx-auto" loading="lazy" alt="Education Image 3" style="height: 300px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block">
                   
                 </div>
@@ -238,6 +249,7 @@ layout: default
       </div>
     </div>
     <hr>
-  
-    
+
+  <script defer src="/assets/js/touch-overlay.js"></script>
+
 

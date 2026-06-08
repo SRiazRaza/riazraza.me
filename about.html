@@ -1,0 +1,258 @@
+---
+layout: default
+title: About — Riaz Raza
+---
+<style>
+  .about-hero {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+  .about-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #d0d7de;
+    margin-bottom: 1rem;
+  }
+  .about-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    font-family: 'Gentium Book Basic', serif;
+    color: #363636;
+    margin: 0;
+  }
+  .about-role {
+    font-size: 1rem;
+    color: #1976d2;
+    font-weight: 600;
+    margin: 0.4rem 0 1rem;
+  }
+  .about-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    color: #444;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #d0d7de;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -1.75rem;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1976d2;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #1976d2;
+  }
+  .timeline-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1976d2;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+    font-family: 'Garamond', serif;
+  }
+  .timeline-sub {
+    font-size: 0.88rem;
+    color: #57606a;
+    margin: 0;
+  }
+  .interest-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    margin: 4px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .interest-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  }
+  body.manga-mode .timeline::before { background: #1a1a1a; }
+  body.manga-mode .timeline-dot { background: #e60026; box-shadow: 0 0 0 2px #e60026; }
+  body.manga-mode .timeline-year { color: #e60026; }
+  body.manga-mode .about-name { font-family: var(--rr-font-heading); }
+</style>
+
+<div class="container-lg px-3">
+  <div class="about-hero rr-reveal">
+    <img src="/assets/img/logo.png" alt="Riaz Raza" class="about-avatar" loading="lazy">
+    <h1 class="about-name" data-i18n="about.title">About Me</h1>
+    <p class="about-role" data-i18n="hero.subtitle">ML Engineer | Jr Research Engineer</p>
+    <div class="about-badges">
+      <span class="about-badge">📍 Italy / Spain</span>
+      <span class="about-badge">🎓 MSc Computer Science — UniPD</span>
+      <span class="about-badge">🤖 AI & Computer Vision</span>
+      <span class="about-badge">🌐 EN · IT · UR</span>
+    </div>
+    <div class="d-flex flex-justify-center" style="gap:0.75rem; flex-wrap:wrap;">
+      <a href="mailto:riazraza0@gmail.com" class="btn btn-primary btn-cta">✉ Email Me</a>
+      <a href="https://linkedin.com/in/riaz-raza-a2002a181" target="_blank" class="btn btn-outline btn-cta">LinkedIn</a>
+      <a href="https://github.com/SRiazRaza" target="_blank" class="btn btn-outline btn-cta">GitHub</a>
+    </div>
+  </div>
+
+  <hr class="rr-divider" style="margin: 2rem 0;">
+
+  <!-- Bio -->
+  <div class="d-md-flex gutter-md mb-6 rr-reveal">
+    <div class="col-md-6">
+      <h2 class="h3 mb-3" style="font-family:'Gentium Book Basic',serif;" data-i18n="about.story_title">My Story</h2>
+      <p class="f4" data-i18n="about.story">
+        Originally from Pakistan, I moved to Italy to pursue my MSc in Computer Science at the
+        <strong>University of Padova</strong>, specialising in Artificial Intelligence.
+        My thesis on <em>3D Human Pose Estimation from Egocentric Videos of Social Interactions</em>
+        took me to <strong>IRI-UPC in Barcelona</strong>, where I collaborated with leading researchers
+        on egocentric vision using the Microsoft HoloLens.
+      </p>
+      <p class="f4">
+        I'm fascinated by the intersection of deep learning, perception, and user-facing products —
+        whether that's building SaaS tools, writing about AI, or experimenting with new architectures.
+        I also run <a href="https://erpcanon.com" target="_blank">ERPCanon</a>, a suite of enterprise SaaS modules.
+      </p>
+      <p class="f4">
+        Outside of work: obsessive manga/manhwa reader, strategy game addict, and occasional pasta chef. <span class="miner-icon" title="Always building something ⛏" style="position:relative;">⛏</span>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="h3 mb-3" style="font-family:'Gentium Book Basic',serif;">Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item rr-reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2024 — Present</p>
+          <p class="timeline-title">ML Engineer & Founder</p>
+          <p class="timeline-sub">Building ERPCanon · Freelance AI projects · Open source</p>
+        </div>
+        <div class="timeline-item rr-reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2023 — 2024</p>
+          <p class="timeline-title">Research Intern — IRI-UPC, Barcelona</p>
+          <p class="timeline-sub">3D Human Pose Estimation · HoloLens · Egocentric vision</p>
+        </div>
+        <div class="timeline-item rr-reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2023</p>
+          <p class="timeline-title">Finalist — Start Cup Veneto</p>
+          <p class="timeline-sub">AiUAV project · Cleantech & Energy category · UNIPD</p>
+        </div>
+        <div class="timeline-item rr-reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2021 — 2024</p>
+          <p class="timeline-title">MSc Computer Science — University of Padova</p>
+          <p class="timeline-sub">Major in AI · Graduated April 2024 · GPA distinction</p>
+        </div>
+        <div class="timeline-item rr-reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-year">2017 — 2021</p>
+          <p class="timeline-title">BSc Computer Science</p>
+          <p class="timeline-sub">Pakistan · Foundations in software engineering & systems</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rr-divider" style="margin: 2rem 0;">
+
+  <hr class="rr-divider" style="margin: 2rem 0;">
+
+  <!-- Skills Section -->
+  <div class="rr-reveal">
+    {% include "skills-section" %}
+  </div>
+
+  <!-- Interests -->
+  <div class="mb-6 rr-reveal" style="text-align:center;">
+    <h2 class="h3 mb-3" style="font-family:'Gentium Book Basic',serif;">Interests & Hobbies</h2>
+    <div>
+      <span class="interest-chip">🤖 AI Research</span>
+      <span class="interest-chip">🧠 Computer Vision</span>
+      <span class="interest-chip">📚 Manga</span>
+      <span class="interest-chip">🎮 Retro Games</span>
+      <span class="interest-chip">🏗 Building SaaS</span>
+      <span class="interest-chip">✍ Technical Writing</span>
+      <span class="interest-chip">🍝 Cooking (pasta, obviously)</span>
+      <span class="interest-chip">⛏ Always Building Something</span>
+    </div>
+  </div>
+
+  <!-- Favorite works callout -->
+  <div class="mb-5 rr-reveal" style="text-align:center;">
+    <h2 class="h3 mb-3" style="font-family:'Gentium Book Basic',serif;">Manga · Manhwa · Manhua</h2>
+    <p class="color-text-secondary mb-3">All-time favourites &amp; currently reading:</p>
+    <div>
+      <span class="interest-chip">⬆ Solo Leveling</span>
+      <span class="interest-chip">🍥 Naruto</span>
+      <span class="interest-chip">🥋 Murim Log-In</span>
+      <span class="interest-chip">🪓 Surviving as a Barbarian in a Game</span>
+    </div>
+  </div>
+
+  <div class="mb-6 rr-reveal" style="text-align:center;">
+    <h2 class="h3 mb-3" style="font-family:'Gentium Book Basic',serif;">Strategy Games</h2>
+    <p class="color-text-secondary mb-2">Playing / played:</p>
+    <div class="mb-3">
+      <span class="interest-chip">🏰 Age of Empires 3</span>
+      <span class="interest-chip">⚔ Total War: Shogun / Rome / Empire / Warhammer / Three Kingdoms</span>
+      <span class="interest-chip">🚢 Anno 1404</span>
+      <span class="interest-chip">🏇 Mount &amp; Blade</span>
+      <span class="interest-chip">🔫 Far Cry 3 &amp; 4</span>
+      <span class="interest-chip">🏴‍☠️ Sid Meier's Pirates!</span>
+    </div>
+    <p class="color-text-secondary mb-2">Want to play:</p>
+    <div>
+      <span class="interest-chip" style="opacity:0.75;">🤠 Red Dead Redemption 2</span>
+      <span class="interest-chip" style="opacity:0.75;">🌆 Watch Dogs 2</span>
+      <span class="interest-chip" style="opacity:0.75;">🔫 Far Cry 5</span>
+      <span class="interest-chip" style="opacity:0.75;">👑 Rising Lords</span>
+      <span class="interest-chip" style="opacity:0.75;">⚔ Conqueror's Blade</span>
+    </div>
+  </div>
+
+  <div class="text-center mb-6 rr-reveal">
+    <a href="/contact/" class="btn btn-primary btn-cta mr-2" data-i18n="hero.cta_contact">Get in Touch</a>
+    <a href="/projects/" class="btn btn-outline btn-cta" data-i18n="hero.cta_work">View My Work</a>
+  </div>
+</div>

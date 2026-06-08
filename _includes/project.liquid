@@ -2,12 +2,12 @@
   <!-- Card container with a border, taking you to the project page -->
   <a
     href="/projects/{{ project.slug }}/"
-    class="d-flex flex-column color-bg-primary rounded-1 box-shadow border text-inherit no-underline flex-1"
+    class="project-card d-flex flex-column color-bg-primary rounded-1 box-shadow border text-inherit no-underline flex-1"
     style="height: 100%; border: 1px solid #ddd; padding: 10px;"
   >
     <!-- project image container -->
     <div class="project-image-container relative" style="width: 100%; max-height: 200px; overflow: hidden;">
-      <img src="{{ project.screenshots[0] }}" alt="Screenshot of {{ project.title }} project" style="width: 1000px; height: 600px; object-fit: contain;">
+      <img src="{{ project.screenshots[0] }}" alt="Screenshot of {{ project.title }} project" style="width: 1000px; height: 600px; object-fit: contain;" loading="lazy">
     </div>
   </a>
 

@@ -1,0 +1,377 @@
+// ============================================================
+// Animations — professional micro-interactions + hobby accents
+// All defaults are subtle and non-intrusive.
+// Heavy effects scoped to body.manga-mode or body.games-mode.
+// ============================================================
+
+// ------------------------------------------------------------
+// 1. Card hover lift (always on — project + product cards)
+// ------------------------------------------------------------
+.project-card,
+.product-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  will-change: transform;
+}
+
+.project-card:hover,
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+// ------------------------------------------------------------
+// 2. Hero section fade-in sequence
+// ------------------------------------------------------------
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroFadeUp 0.6s ease forwards;
+}
+.hero-fade-in:nth-child(2) { animation-delay: 0.1s; }
+.hero-fade-in:nth-child(3) { animation-delay: 0.2s; }
+.hero-fade-in:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ------------------------------------------------------------
+// 3. Typing cursor — appended after hero subtitle
+// ------------------------------------------------------------
+.typing-cursor::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  color: #1976d2;
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ------------------------------------------------------------
+// 4. Scroll-reveal (JS adds .rr-visible when element enters viewport)
+// ------------------------------------------------------------
+.rr-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rr-reveal.rr-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// ------------------------------------------------------------
+// 5. CTA button pulse on hover
+// ------------------------------------------------------------
+.btn-cta {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(25, 118, 210, 0.3);
+}
+
+.btn-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn-cta:hover::after {
+  opacity: 1;
+}
+
+// ------------------------------------------------------------
+// 6. Link underline slide (nav + inline links)
+// ------------------------------------------------------------
+.rr-link-slide {
+  position: relative;
+  text-decoration: none;
+}
+
+.rr-link-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #1976d2;
+  transition: width 0.22s ease;
+}
+
+.rr-link-slide:hover::after {
+  width: 100%;
+}
+
+// ------------------------------------------------------------
+// 7. Coding style — typewriter text reveal
+// ------------------------------------------------------------
+.rr-typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #1976d2;
+  animation: typeReveal 2.5s steps(40, end) forwards,
+             cursorBlink 0.75s step-end 2.5s forwards;
+}
+
+@keyframes typeReveal {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+// Code-badge chip style (used in skills, project tech tags)
+.code-badge {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  padding: 1px 7px;
+  color: #0550ae;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.code-badge:hover {
+  background: #ddf4ff;
+  border-color: #54aeff;
+  transform: translateY(-1px);
+}
+
+// ------------------------------------------------------------
+// 8. Hardworking miner ⛏ — decorative accent in skills/hero
+// ------------------------------------------------------------
+.miner-icon {
+  display: inline-block;
+  font-size: 1.4rem;
+  transform-origin: bottom right;
+  animation: minerSwing 1.8s ease-in-out infinite;
+  cursor: default;
+  user-select: none;
+}
+
+@keyframes minerSwing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-35deg); }
+  45%  { transform: rotate(8deg); }
+  65%  { transform: rotate(-20deg); }
+  80%  { transform: rotate(4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+// Dust particle burst on miner hover
+.miner-icon:hover::after {
+  content: '✦✦✦';
+  position: absolute;
+  font-size: 0.6rem;
+  color: #b07d2e;
+  animation: dustBurst 0.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes dustBurst {
+  0%   { opacity: 1; transform: translateX(0) translateY(0) scale(0.5); }
+  100% { opacity: 0; transform: translateX(16px) translateY(-12px) scale(1.2); }
+}
+
+// Progress bar "mining" fill
+.mining-bar {
+  height: 4px;
+  background: #e8e8e8;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.mining-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s ease 0.2s;
+}
+
+.rr-reveal.rr-visible .mining-bar-fill,
+.mining-bar-fill.active {
+  transform: scaleX(1);
+}
+
+// ------------------------------------------------------------
+// 9. Section divider — animated gradient sweep
+// ------------------------------------------------------------
+.rr-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #1976d2 40%, #42a5f5 60%, transparent);
+  background-size: 200% 100%;
+  animation: dividerSweep 3s ease infinite;
+  border: none;
+  margin: 0;
+  opacity: 0.4;
+}
+
+@keyframes dividerSweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ------------------------------------------------------------
+// 10. Skill badge pop on hover (professional)
+// ------------------------------------------------------------
+@media (prefers-reduced-motion: no-preference) {
+  .skill-badge {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// ------------------------------------------------------------
+// GAMES + MANGA MODE micro-interactions
+// (scoped to body.manga-mode — zero impact on default)
+// ------------------------------------------------------------
+
+// Pixel heart that appears on project card hover in manga/games mode
+body.manga-mode .project-card::after,
+body.manga-mode .product-card::after {
+  content: '❤';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 1rem;
+  opacity: 0;
+  color: #e60026;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: scale(0.6);
+  filter: drop-shadow(0 0 3px rgba(230, 0, 38, 0.4));
+}
+
+body.manga-mode .project-card,
+body.manga-mode .product-card {
+  position: relative;
+}
+
+body.manga-mode .project-card:hover::after,
+body.manga-mode .product-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+  animation: pixelHeartPop 0.35s ease forwards;
+}
+
+@keyframes pixelHeartPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.3); opacity: 1; }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+// Soft bounce on CTAs in manga/games mode
+@media (prefers-reduced-motion: no-preference) {
+  body.manga-mode .btn-cta {
+    animation: softBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes softBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-4px); }
+  }
+
+  body.manga-mode .btn-cta:hover {
+    animation: none;
+    transform: scale(1.05);
+  }
+}
+
+// Panel fade-in for cards in manga mode
+body.manga-mode .project-card,
+body.manga-mode .product-card {
+  animation: panelSlideIn 0.4s ease both;
+}
+
+@keyframes panelSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Game controller icon pulse on manga toggle button hover
+.manga-toggle-btn:hover .btn-icon,
+.manga-toggle-btn:focus .btn-icon {
+  animation: controllerPulse 0.5s ease;
+}
+
+@keyframes controllerPulse {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(1.3) rotate(-10deg); }
+  70%  { transform: scale(0.95) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+// Scroll-based stagger for manga card grid
+body.manga-mode .project-card:nth-child(1) { animation-delay: 0s; }
+body.manga-mode .project-card:nth-child(2) { animation-delay: 0.08s; }
+body.manga-mode .project-card:nth-child(3) { animation-delay: 0.16s; }
+body.manga-mode .product-card:nth-child(1) { animation-delay: 0s; }
+body.manga-mode .product-card:nth-child(2) { animation-delay: 0.08s; }
+body.manga-mode .product-card:nth-child(3) { animation-delay: 0.16s; }
+
+// Manga speech bubble divider
+body.manga-mode .rr-manga-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+body.manga-mode .rr-manga-divider::before,
+body.manga-mode .rr-manga-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--rr-border-ink, #1a1a1a);
+}
+
+// Reduced motion: disable everything cleanly
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .rr-reveal,
+  .miner-icon,
+  .rr-typewriter,
+  .typing-cursor::after,
+  .rr-divider,
+  body.manga-mode .btn-cta,
+  body.manga-mode .project-card,
+  body.manga-mode .product-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

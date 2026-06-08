@@ -1,0 +1,276 @@
+---
+layout: default
+---
+<style>
+  .post-header {
+    padding: 2.5rem 0 1.5rem;
+    border-bottom: 1px solid #d0d7de;
+    margin-bottom: 2rem;
+  }
+  .post-title {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: 'Gentium Book Basic', serif;
+    color: #24292f;
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
+  }
+  .post-meta {
+    font-size: 0.85rem;
+    color: #57606a;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+  .post-tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: #ddf4ff;
+    border: 1px solid #54aeff;
+    color: #0550ae;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .post-cover {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  .post-toc {
+    position: sticky;
+    top: 1.5rem;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+  .post-toc h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #57606a;
+    margin: 0 0 0.75rem;
+  }
+  .post-toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .post-toc li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  .post-toc a {
+    color: #57606a;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .post-toc a:hover,
+  .post-toc a.active {
+    color: #1976d2;
+  }
+  .post-share {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+  }
+  .post-share span {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #444;
+    margin-right: 0.25rem;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid transparent;
+  }
+  .share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    text-decoration: none;
+  }
+  .share-btn.twitter { background: #1da1f2; color: #fff; }
+  .share-btn.linkedin { background: #0a66c2; color: #fff; }
+  .share-btn.copy { background: #f6f8fa; color: #444; border-color: #d0d7de; }
+  .related-posts {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #d0d7de;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .related-card {
+    padding: 1rem;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    display: block;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    border-color: #1976d2;
+    text-decoration: none;
+  }
+  .related-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+  }
+  .related-card p {
+    font-size: 0.8rem;
+    color: #57606a;
+    margin: 0;
+  }
+  body.manga-mode .post-toc {
+    border: 2px solid var(--rr-border-ink);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.8);
+  }
+  body.manga-mode .post-share {
+    border: 2px solid var(--rr-border-ink);
+  }
+  body.manga-mode .related-card:hover {
+    border-color: var(--rr-border-ink);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.8);
+    transform: translate(-2px,-2px);
+  }
+  @media (max-width: 767px) {
+    .post-toc { display: none; }
+  }
+</style>
+
+<div class="container-lg px-3">
+  <div class="d-md-flex gutter-md">
+    <!-- Main content -->
+    <div class="col-md-9">
+      <div class="post-header">
+        <h1 class="post-title">{{ title }}</h1>
+        <div class="post-meta">
+          {% if date %}<span>📅 {{ date | date: "%B %d, %Y" }}</span>{% endif %}
+          {% if author %}<span>✍ {{ author }}</span>{% endif %}
+          {% if tags %}
+            {% for tag in tags %}
+            <span class="post-tag">#{{ tag }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      {% if mangaArt %}
+      {% include "manga-art-animation" %}
+      {% elsif cover %}
+      <img src="{{ cover }}" alt="{{ title }}" class="post-cover" loading="lazy">
+      {% endif %}
+
+      <div class="markdown-body post-body" id="postBody">
+        {{ content }}
+      </div>
+
+      <!-- Share -->
+      <div class="post-share">
+        <span>Share:</span>
+        <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener" class="share-btn twitter">
+          𝕏 Twitter
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener" class="share-btn linkedin">
+          LinkedIn
+        </a>
+        <button class="share-btn copy" id="copyLink" onclick="copyPostLink()">🔗 Copy Link</button>
+      </div>
+
+      <!-- Related posts -->
+      {% assign related = collections.posts | where_not: "url", page.url | limit: 3 %}
+      {% if related.size > 0 %}
+      <div class="related-posts">
+        <h3 class="h3" style="font-family:'Gentium Book Basic',serif;">Related Posts</h3>
+        <div class="related-grid">
+          {% for post in related %}
+          <a href="{{ post.url }}" class="related-card">
+            <h4>{{ post.data.title }}</h4>
+            <p>{{ post.data.date | date: "%b %Y" }}{% if post.data.tags %} · #{{ post.data.tags | first }}{% endif %}</p>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- TOC sidebar -->
+    <aside class="col-md-3 d-none d-md-block">
+      <div class="post-toc" id="postToc">
+        <h3>Contents</h3>
+        <ol id="tocList"></ol>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Build TOC from h2/h3 headings
+  const body = document.getElementById('postBody');
+  const tocList = document.getElementById('tocList');
+  if (!body || !tocList) return;
+
+  const headings = body.querySelectorAll('h2, h3');
+  if (headings.length < 2) {
+    const toc = document.getElementById('postToc');
+    if (toc) toc.style.display = 'none';
+    return;
+  }
+
+  headings.forEach((h, i) => {
+    if (!h.id) h.id = 'heading-' + i;
+    const li = document.createElement('li');
+    if (h.tagName === 'H3') li.style.paddingLeft = '0.75rem';
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  // Highlight active TOC item on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const link = tocList.querySelector('a[href="#' + e.target.id + '"]');
+      if (link) link.classList.toggle('active', e.isIntersecting);
+    });
+  }, { rootMargin: '-10% 0px -85% 0px' });
+
+  headings.forEach(h => observer.observe(h));
+})();
+
+function copyPostLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copyLink');
+    if (btn) { btn.textContent = '✅ Copied!'; setTimeout(() => { btn.textContent = '🔗 Copy Link'; }, 1800); }
+  });
+}
+</script>

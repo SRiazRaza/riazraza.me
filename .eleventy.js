@@ -50,6 +50,12 @@ export default function (eleventyConfig) {
         return collectionApi.getFilteredByGlob("_products/*.md").sort((a, b) => b.data.stars - a.data.stars);
     });
 
+    eleventyConfig.addCollection("posts", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("blog/*.md")
+            .filter(p => !p.inputPath.includes("index"))
+            .sort((a, b) => b.date - a.date);
+    });
+
     // Pass custom options to liquid
     let options = {
         extname: ".liquid",

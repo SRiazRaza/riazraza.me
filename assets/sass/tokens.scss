@@ -1,0 +1,18 @@
+// Design tokens — Professional defaults
+:root {
+  --rr-radius: 8px;
+  --rr-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --rr-transition: 0.2s ease;
+  --rr-font-heading: 'Gentium Book Basic', Georgia, serif;
+  --rr-font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --rr-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+// Manga Mode token overrides — ALL scoped to body.manga-mode
+body.manga-mode {
+  --rr-radius: 3px;
+  --rr-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
+  --rr-border-ink: #1a1a1a;
+  --rr-accent-manga: #e60026;
+  --rr-font-heading: 'Bangers', 'Gentium Book Basic', serif;
+}
