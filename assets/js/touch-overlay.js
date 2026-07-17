@@ -1,9 +1,7 @@
 (function () {
-  // Mobile-only — touch device check
   var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
     || ('ontouchstart' in window)
     || (navigator.maxTouchPoints > 0);
-  if (!isMobile) return;
 
   var tapCount = 0;
   var tapTimer = null;
@@ -47,19 +45,25 @@
     }).observe(h1, { childList: true, subtree: true, characterData: true });
   }
 
+  function handleTap(e) {
+    e.stopPropagation();
+    tapCount++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(function () { tapCount = 0; }, 2200);
+    if (tapCount >= 5) {
+      tapCount = 0;
+      clearTimeout(tapTimer);
+      showEgg();
+    }
+  }
+
   function attachTap(trigger) {
     if (!trigger) return;
-    trigger.addEventListener('touchstart', function (e) {
-      e.stopPropagation();
-      tapCount++;
-      clearTimeout(tapTimer);
-      tapTimer = setTimeout(function () { tapCount = 0; }, 2200);
-      if (tapCount >= 5) {
-        tapCount = 0;
-        clearTimeout(tapTimer);
-        showEgg();
-      }
-    }, { passive: true });
+    if (isMobile) {
+      trigger.addEventListener('touchstart', handleTap, { passive: true });
+    } else {
+      trigger.addEventListener('click', handleTap);
+    }
   }
 
   // Run after DOM + deferred scripts (i18n) have already executed.
