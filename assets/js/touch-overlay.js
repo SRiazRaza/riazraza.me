@@ -110,16 +110,35 @@
     close.textContent = '✕';
     close.setAttribute('aria-label', 'Close');
     close.style.cssText = [
-      'position:absolute', 'top:10px', 'right:12px',
-      'background:rgba(255,255,255,0.12)', 'border:none',
-      'color:#fff', 'font-size:1rem',
-      'width:30px', 'height:30px', 'border-radius:50%',
+      'position:absolute', 'top:12px', 'right:14px',
+      'background:rgba(255,255,255,0.18)', 'border:none',
+      'color:#fff', 'font-size:1.1rem', 'font-weight:bold',
+      'width:44px', 'height:44px', 'border-radius:50%',
       'cursor:pointer', 'z-index:10',
-      'display:flex', 'align-items:center', 'justify-content:center'
+      'display:flex', 'align-items:center', 'justify-content:center',
+      '-webkit-tap-highlight-color:transparent'
     ].join(';');
-    close.addEventListener('click', function () { overlay.remove(); });
+
+    // Lock background scroll
+    var prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function closeOverlay() {
+      document.body.style.overflow = prevOverflow;
+      overlay.remove();
+    }
+
+    close.addEventListener('touchend', function (e) { e.preventDefault(); closeOverlay(); });
+    close.addEventListener('click', closeOverlay);
+
+    // Delay backdrop-tap close so the opening tap doesn't immediately dismiss it
+    var canClose = false;
+    setTimeout(function () { canClose = true; }, 500);
+    overlay.addEventListener('touchend', function (e) {
+      if (canClose && e.target === overlay) { e.preventDefault(); closeOverlay(); }
+    });
     overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) overlay.remove();
+      if (canClose && e.target === overlay) closeOverlay();
     });
 
     panel.appendChild(canvas);
