@@ -22,6 +22,9 @@
         var span = document.createElement('span');
         span.id = 'riaz-secret-tap';
         span.textContent = 'Riaz';
+        // iOS Safari requires cursor:pointer + onclick for touchstart to fire on non-interactive elements
+        span.style.cssText = 'cursor:pointer;-webkit-tap-highlight-color:transparent;';
+        span.onclick = function () {};
         var before = document.createTextNode(text.slice(0, idx));
         var after = document.createTextNode(text.slice(idx + 4));
         h1.replaceChild(after, node);
