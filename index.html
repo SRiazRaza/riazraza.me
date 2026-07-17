@@ -3,25 +3,57 @@ layout: default
 ---
 <style>
   .title {
-    font-size: 8vw;
+    font-size: 2.4rem;
     font-weight: 900;
     text-transform: uppercase;
     text-align: center;
     font-family: 'Gentium Book Basic', serif;
     color: #363636;
     margin-bottom: 0;
+    line-height: 1.1;
   }
-  .subtitle {font-size: 18px;
-  font-weight: 600;
-  margin: 10px 0 20px 0;
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  color: #1976d2;
+  .subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 8px 0 16px 0;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: #1976d2;
   }
-  @media (min-width: 300px) {
-    .title {
-      font-size: 4.4rem;
+  @media (min-width: 480px) {
+    .title { font-size: 3rem; }
+    .subtitle { font-size: 17px; }
+  }
+  @media (min-width: 768px) {
+    .title { font-size: 4.4rem; }
+    .subtitle { font-size: 18px; }
+  }
+
+  /* Hero layout */
+  .hero-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-avatar { order: -1; }
+  .hero-avatar-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  @media (min-width: 768px) {
+    .hero-layout {
+      flex-direction: row;
+      justify-content: center;
+      gap: 3rem;
+      align-items: center;
     }
+    .hero-avatar { order: 0; }
+    .hero-avatar-img { width: 160px; height: 160px; }
+    .hero-text { text-align: left !important; }
+    .title { text-align: left; }
+    .subtitle { text-align: left; }
   }
 </style>
 <!-- Bootstrap CSS -->
@@ -33,10 +65,8 @@ layout: default
 <div class="container-lg px-3">
   <header class="py-6">
     <div class="pb-0 pt-md-4 py-lg-6">
-      <div
-        class="d-md-flex flex-md-items-center flex-md-row-reverse flex-md-justify-center gutter-md-spacious"
-      >
-        <div class="col-md-8 text-center text-md-left">
+      <div class="hero-layout">
+        <div class="hero-text text-center">
           <h1 class="title hero-fade-in" data-i18n="hero.title">
             Syed Riaz Raza
           </h1>
@@ -75,10 +105,8 @@ layout: default
           
 
         </div>
-        <div
-          class="col-3 mx-auto mx-md-0 offset-md-1 text-center text-md-right"
-        >
-          <img src="/assets/img/logo.png" class="rounded-xl" alt="riaz logo" loading="lazy" />
+        <div class="hero-avatar">
+          <img src="/assets/img/logo.png" class="rounded-xl hero-avatar-img" alt="riaz logo" loading="lazy" />
         </div>
       </div>
     </div>
