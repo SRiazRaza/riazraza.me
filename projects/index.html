@@ -12,7 +12,7 @@ title: Featured Projects
   <div class="container-lg px-3 page-section">
     <h1 class="h2"></h1>
     <h2 class="h1 text-center" style="text-transform: uppercase; font-family: 'Gentium Book Basic', serif;">Projects</h2> 
-    <div class="d-md-flex flex-wrap gutter flex-auto">
+    <div class="d-flex flex-wrap gutter flex-auto">
       {% assign projects = collections.projects | sort: "updated" | reverse%}
       {% for project in projects %}
         {% include "project" project: project.data %}
