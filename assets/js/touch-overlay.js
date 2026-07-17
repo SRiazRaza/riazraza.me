@@ -92,19 +92,28 @@
   function showEgg() {
     if (document.getElementById('meerab-egg')) return;
 
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+
     var overlay = document.createElement('div');
     overlay.id = 'meerab-egg';
     overlay.style.cssText = [
-      'position:fixed', 'inset:0', 'z-index:99999',
+      'position:fixed', 'top:0', 'left:0',
+      'width:' + vw + 'px', 'height:' + vh + 'px',
+      'z-index:99999',
       'background:rgba(8,3,18,0.96)',
-      'display:flex', 'align-items:center', 'justify-content:center'
+      'display:flex', 'align-items:center', 'justify-content:center',
+      'box-sizing:border-box'
     ].join(';');
+
+    var panelW = Math.min(vw * 0.92, 340);
+    var panelH = Math.min(vh * 0.72, 560);
 
     var panel = document.createElement('div');
     panel.style.cssText = [
       'position:relative',
-      'width:92vw', 'max-width:360px',
-      'height:72vh', 'max-height:580px',
+      'width:' + panelW + 'px', 'height:' + panelH + 'px',
+      'flex-shrink:0',
       'border-radius:22px', 'overflow:hidden',
       'animation:meerabIn 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards',
       'box-shadow:0 0 60px rgba(255,107,157,0.45),0 0 120px rgba(255,107,157,0.15)'
